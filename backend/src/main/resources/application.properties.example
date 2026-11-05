@@ -1,0 +1,81 @@
+# ---------------------------------------------------------------------------
+# Example configuration.
+#
+# Copy this file to application.properties (same folder) before building or
+# running the backend. application.properties is ignored by git.
+#
+# The secret values below are read from environment variables. Set all five
+# before starting the app (the values shown are fake):
+#
+#   JWT_SECRET_KEY=<base64 key, at least 32 bytes - e.g. `openssl rand -base64 32`>
+#   GOOGLE_CLIENT_ID=your-client-id.apps.googleusercontent.com
+#   GOOGLE_CLIENT_SECRET=your-google-client-secret
+#   MAIL_USERNAME=sender@example.com
+#   MAIL_PASSWORD=your-smtp-app-password
+# ---------------------------------------------------------------------------
+
+spring.application.name=backend
+# Logging Configuration
+logging.level.org.hibernate.SQL=DEBUG
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+logging.level.org.hibernate.type.descriptor.sql=trace
+logging.level.org.springframework.orm.jpa=DEBUG
+logging.level.org.springframework.transaction=DEBUG
+logging.level.org.springframework.security=DEBUG
+logging.level.com.tecnocampus.backend=DEBUG
+# Detailed security logging
+logging.level.org.springframework.security.web.FilterChainProxy=DEBUG
+logging.level.org.springframework.security.web.access.intercept.FilterSecurityInterceptor=DEBUG
+# JPA/Hibernate Configuration
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.defer-datasource-initialization=true
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+# H2 Database Configuration
+# Use a local file-backed database so user accounts survive backend restarts.
+spring.datasource.url=jdbc:h2:file:./data/testdb;DB_CLOSE_ON_EXIT=FALSE
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.h2.console.enabled=true
+# JWT Security Configuration
+application.security.jwt.secret-key=${JWT_SECRET_KEY}
+application.security.jwt.token-prefix=Bearer
+application.security.jwt.expiration=86400000
+
+# Google OAuth2 Configuration
+# IMPORTANT: Replace these with your actual Google OAuth2 credentials from Google Cloud Console
+spring.security.oauth2.client.registration.google.client-id=${GOOGLE_CLIENT_ID}
+spring.security.oauth2.client.registration.google.client-secret=${GOOGLE_CLIENT_SECRET}
+spring.security.oauth2.client.registration.google.scope=email,profile
+spring.security.oauth2.client.registration.google.redirect-uri={baseUrl}/login/oauth2/code/{registrationId}
+
+# Frontend URL for OAuth2 redirect
+app.frontend.url=http://127.0.0.1:5500
+
+# Email Service Configuration
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=${MAIL_USERNAME}
+spring.mail.password=${MAIL_PASSWORD}
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+spring.mail.properties.mail.smtp.starttls.required=true
+spring.mail.default-encoding=UTF-8
+
+# Degree -> resources mapping (official codes)
+# Use convention-based filenames: Plan_Estudios_{fileCode}.xlsx and {fileCode}_Horarios.xlsx
+degrees.GEEIA.plan=Plan_Estudios_GEEIA.xlsx
+degrees.GEEIA.timetable=GEEIA_Horarios.xlsx
+
+degrees.GEIGSI.plan=Plan_Estudios_GEIGSI.xlsx
+degrees.GEIGSI.timetable=GEIGSI_Horarios.xlsx
+
+degrees.GEM.plan=Plan_Estudios_GEM.xlsx
+degrees.GEM.timetable=GEM_Horarios.xlsx
+
+degrees.GEOI.plan=Plan_Estudios_GEOI.xlsx
+degrees.GEOI.timetable=GEOI_Horarios.xlsx
+
+degrees.GEIGDP.plan=Plan_Estudios_GEIGDP.xlsx
+degrees.GEIGDP.timetable=GEIGDP_Horarios.xlsx

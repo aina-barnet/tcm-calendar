@@ -1,0 +1,23 @@
+# Build output
+target/
+build/
+
+# IDE folders
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+._*
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Local runtime data (H2 database, uploaded files)
+backend/data/
+backend/uploads/
+
+# Local configuration with real credentials.
+# Copy application.properties.example to application.properties instead.
+application.properties
