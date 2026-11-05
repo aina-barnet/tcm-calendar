@@ -1,0 +1,128 @@
+/* Saved calendars panel */
+.saved-schedules-section {
+    margin-bottom: 24px;
+}
+
+.saved-schedules-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.saved-schedules-header h2 {
+    margin: 0;
+}
+
+.saved-schedules-count {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: var(--bg-accent);
+    border: 1px solid rgba(223, 160, 35, 0.3);
+    border-radius: 999px;
+    padding: 6px 12px;
+}
+
+.saved-schedules-hint {
+    margin: 0 0 16px 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    max-width: 64ch;
+}
+
+.saved-schedules-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.saved-schedules-select {
+    flex: 1 1 320px;
+    min-width: 240px;
+    min-height: 48px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-family: 'Open Serif Book', serif;
+    color: var(--text-primary);
+    background: linear-gradient(180deg, #fff 0%, #FFFCF6 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.load-schedule-btn,
+.rename-schedule-btn,
+.remove-schedule-btn {
+    min-height: 48px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background: #fff;
+    color: var(--text-primary);
+    padding: 0 16px;
+    white-space: nowrap;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.load-schedule-btn:hover:not(:disabled),
+.rename-schedule-btn:hover:not(:disabled),
+.remove-schedule-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+}
+
+.load-schedule-btn:disabled,
+.rename-schedule-btn:disabled,
+.remove-schedule-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.load-schedule-btn {
+    border-color: rgba(223, 160, 35, 0.35);
+    background: linear-gradient(180deg, #fffdf8 0%, #fff8ea 100%);
+    color: #8A5E10;
+}
+
+.rename-schedule-btn {
+    border-color: rgba(223, 160, 35, 0.45);
+    color: #7A5A20;
+}
+
+.remove-schedule-btn {
+    border-color: #f1c1c1;
+    color: #a73737;
+}
+
+@media (max-width: 768px) {
+    .saved-schedules-controls {
+        align-items: stretch;
+    }
+
+    .saved-schedules-select,
+    .load-schedule-btn,
+    .rename-schedule-btn,
+    .remove-schedule-btn {
+        width: 100%;
+    }
+}
+
+/* Visualization-only mode for My Calendar */
+.calendar-visualization-only .events-section,
+.calendar-visualization-only #eventModalOverlay,
+.calendar-visualization-only #eventDetailOverlay,
+.calendar-visualization-only #importModalOverlay {
+    display: none !important;
+}
+
+.calendar-visualization-only .day-event,
+.calendar-visualization-only .week-event,
+.calendar-visualization-only .agenda-event {
+    cursor: default;
+}

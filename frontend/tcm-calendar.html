@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>TCM Calendar</title>
+    <link href="styles/fonts.css" rel="stylesheet">
+    <link href="styles/base.css" rel="stylesheet">
+    <link href="styles/profile.css" rel="stylesheet">
+    <link href="styles/calendar.css" rel="stylesheet">
+    <link href="styles/responsive.css" rel="stylesheet">
+    <link href="styles/transitions.css" rel="stylesheet">
+    <link href="styles/home.css" rel="stylesheet">
+    <link href="styles/header.css" rel="stylesheet">
+    <link href="styles/sidebar.css" rel="stylesheet">
+    <link href="styles/sidebar-profile.css" rel="stylesheet">
+    <link href="styles/nav-auth.css" rel="stylesheet">
+    <link href="styles/shared-components.css" rel="stylesheet">
+    <link href="styles/consistency.css" rel="stylesheet">
+</head>
+
+<body>
+    <div aria-hidden="true" class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- Botó per obrir/tancar menú lateral -->
+    <button aria-expanded="false" aria-label="Obrir/Tancar menú de navegació" class="menu-button" id="toggleSidebar"
+        type="button">
+        <span aria-hidden="true">☰</span>
+    </button>
+
+    <!-- Capçalera superior -->
+    <header class="top-header" role="banner">
+        <div class="header-container">
+            <div class="logo-section">
+                <img alt="TecnoCampus" class="tecnocampus-logo" src="assets/images/logo_horitz.png">
+            </div>
+            <div aria-label="Secció d'autenticació" class="auth-section" id="headerAuthSection" role="region">
+                <!-- Contingut generat dinàmicament per auth-state.js -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Menú lateral -->
+    <aside aria-label="Navegació principal" class="sidebar" role="navigation">
+        <div class="sidebar-header">
+            <img alt="TCM Calendar" class="sidebar-logo" src="assets/images/logo_app.svg">
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-main">
+                <ul>
+                    <li>
+                        <a aria-current="page" class="nav-item active" href="tcm-calendar.html">
+                            <span>Inici</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="saved-calendars.html">
+                            <span>El meu calendari</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="calendar-creation.html">
+                            <span>Crea el teu horari</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="about-tcm-calendar.html">
+                            <span>Punt d'informació</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="container home-main" id="mainContent">
+        <!-- Contingut per a usuaris no autenticats -->
+        <div class="home-content with-index" id="unauthenticatedContent">
+            <div class="home-main-column">
+                <section class="hero-section" id="hero">
+                    <div class="hero-content">
+                        <div class="home-logo-badge">
+                            <img alt="TCM Calendar Logo" class="hero-logo" src="assets/images/logo_app.svg">
+                        </div>
+                        <h1>El teu horari a la teva manera</h1>
+                        <p>Genera, compara i guarda horaris segons les teves preferències.</p>
+                        <div class="hero-buttons">
+                            <a class="hero-button primary" href="register.html">Crea el teu compte</a>
+                            <a class="hero-button secondary" href="login.html">Ja tinc compte</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="features-section" id="features">
+                    <h2>Per què t'ajudarà?</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🧠</div>
+                            <h3>Decisions més ràpides</h3>
+                            <p>Compara alternatives d'horari i escull la millor sense muntar-ho manualment.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <h3>Generació guiada</h3>
+                            <p>Selecciona assignatures, defineix preferències i tingues propostes llestes.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💾</div>
+                            <h3>Tot queda guardat</h3>
+                            <p>Recupera els horaris guardats quan vulguis des del teu perfil.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📆</div>
+                            <h3>Visualització neta</h3>
+                            <p>Consulta l'horari en format setmanal, amb una lectura clara per classes i franges.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎯</div>
+                            <h3>Enfocat a estudiants</h3>
+                            <p>Dissenyat per al flux real d'estudi: generar, provar i quedar-te amb l'opció òptima.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔐</div>
+                            <h3>Accés segur</h3>
+                            <p>Entra amb el teu compte per mantenir el teu entorn de planificació sempre disponible.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="how-it-works" id="how-it-works">
+                    <h2>Començar és molt fàcil:</h2>
+                    <div class="steps-grid">
+                        <div class="step-card">
+                            <div class="step-number">1</div>
+                            <h3>Crea o inicia sessió</h3>
+                            <p>Accedeix amb el teu compte per desbloquejar la generació d'horaris.</p>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-number">2</div>
+                            <h3>Configura preferències</h3>
+                            <p>Escull assignatures i defineix com vols optimitzar l'horari.</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">3</div>
+                            <h3>Genera i guarda</h3>
+                            <p>Tria la millor proposta i consulta-la sempre que vulguis.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="cta-section" id="cta">
+                    <div class="cta-content">
+                        <h2>El teu horari, en un sol click</h2>
+                        <p><strong>Fes el primer pas i crea el teu compte.</strong></p>
+                        <p>Quadra les teves classes i pràctiques de manera intel·ligent: uneix-te ara i comença a
+                            gestionar
+                            els teus horaris.</p>
+                        <div class="cta-buttons">
+                            <a class="cta-button primary" href="register.html">Registra't gratis</a>
+                            <a class="cta-button secondary" href="about-tcm-calendar.html">Veure més informació</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Contingut per a usuaris autenticats -->
+        <div class="home-content hidden-until-auth" id="authenticatedContent">
+            <section class="welcome-section">
+                <div class="welcome-content">
+                    <h1>Benvingut/da de nou!</h1>
+                    <p>Què vols fer avui?</p>
+                    <div class="quick-actions">
+                        <a class="action-card" href="saved-calendars.html">
+                            <div class="action-icon">📅</div>
+                            <h3>Veure el meu calendari</h3>
+                            <p>Accedeix al teu horari actual</p>
+                        </a>
+                        <a class="action-card" href="calendar-creation.html">
+                            <div class="action-icon">⚡</div>
+                            <h3>Generar nou calendari</h3>
+                            <p>Crea un nou horari personalitzat</p>
+                        </a>
+                        <a class="action-card" href="user-profile.html">
+                            <div class="action-icon">👤</div>
+                            <h3>Editar perfil</h3>
+                            <p>Gestiona les teves dades i preferències</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <!-- Scripts base -->
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/auth-state.js"></script>
+    <script src="scripts/sidebar.js"></script>
+    <script src="scripts/header-auth.js"></script>
+    <script src="scripts/nav-auth.js"></script>
+    <script src="scripts/academic-calendar.js"></script>
+    <!-- Scripts específicos -->
+    <script src="scripts/calendar.js"></script>
+    <script src="scripts/header.js"></script>
+    <script src="scripts/sidebar-auth.js"></script>
+    <script src="scripts/index-auth.js"></script>
+
+    <!-- Reading Progress Bar -->
+    <script>
+        (function () {
+            const progressBar = document.createElement('div');
+            progressBar.className = 'reading-progress-bar';
+            progressBar.setAttribute('role', 'progressbar');
+            progressBar.setAttribute('aria-label', 'Progrés de lectura');
+            progressBar.setAttribute('aria-valuemin', '0');
+            progressBar.setAttribute('aria-valuemax', '100');
+
+            document.body.appendChild(progressBar);
+
+            window.addEventListener('scroll', function () {
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight - windowHeight;
+                const scrolled = window.scrollY;
+                const progress = documentHeight > 0 ? (scrolled / documentHeight) * 100 : 0;
+
+                progressBar.style.width = `${progress}%`;
+                progressBar.setAttribute('aria-valuenow', Math.round(progress));
+            });
+        })();
+    </script>
+</body>
+
+</html>

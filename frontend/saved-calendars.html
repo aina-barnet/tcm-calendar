@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="El meu calendari personal - TCM Calendar" name="description">
+    <link href="assets/images/favicon.png" rel="icon" type="image/png">
+    <title>El meu calendari - TCM Calendar</title>
+    <link href="styles/fonts.css" rel="stylesheet">
+    <link href="styles/base.css" rel="stylesheet">
+    <link href="styles/profile.css" rel="stylesheet">
+    <link href="styles/calendar.css" rel="stylesheet">
+    <link href="styles/calendar-enhanced.css" rel="stylesheet">
+    <link href="styles/saved-calendars.css" rel="stylesheet">
+    <link href="styles/responsive.css" rel="stylesheet">
+    <link href="styles/transitions.css" rel="stylesheet">
+    <link href="styles/header.css" rel="stylesheet">
+    <link href="styles/sidebar.css" rel="stylesheet">
+    <link href="styles/sidebar-profile.css" rel="stylesheet">
+    <link href="styles/nav-auth.css" rel="stylesheet">
+    <link href="styles/shared-components.css" rel="stylesheet">
+    <link href="styles/consistency.css" rel="stylesheet">
+</head>
+
+<body class="calendar-visualization-only">
+    <div aria-hidden="true" class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- Botó per obrir/tancar menú lateral -->
+    <button aria-expanded="false" aria-label="Obrir/Tancar menú de navegació" class="menu-button" id="toggleSidebar">
+        <span aria-hidden="true">☰</span>
+    </button>
+
+    <!-- Capçalera superior -->
+    <header class="top-header" role="banner">
+        <div class="header-container">
+            <div class="logo-section">
+                <img alt="TecnoCampus" class="tecnocampus-logo" src="assets/images/logo_horitz.png">
+            </div>
+            <div aria-label="Secció d'autenticació" class="auth-section" id="headerAuthSection" role="region">
+                <!-- Contingut generat dinàmicament per auth-state.js -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Menú lateral -->
+    <aside aria-label="Navegació principal" class="sidebar" role="navigation">
+        <div class="sidebar-header">
+            <img alt="TCM Calendar" class="sidebar-logo" src="assets/images/logo_app.svg">
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-main">
+                <ul>
+                    <li>
+                        <a class="nav-item" href="tcm-calendar.html">
+                            <span>Inici</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item active" href="saved-calendars.html">
+                            <span>El meu calendari</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="calendar-creation.html">
+                            <span>Crea el teu horari</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="about-tcm-calendar.html">
+                            <span>Punt d'informació</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <section class="profile-hero">
+        <div class="profile-hero-content">
+            <h1>El meu calendari</h1>
+            <p class="profile-subtitle">Gestiona i visualitza els teus horaris guardats</p>
+        </div>
+        <div class="profile-hero-decoration"></div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="profile-container calendar-container">
+            <div class="calendar-layout">
+                <div class="calendar-top-column">
+                    <div class="form-section saved-schedules-section" id="savedSchedulesSection">
+                        <div class="saved-schedules-header">
+                            <h2>Horaris guardats</h2>
+                            <span class="saved-schedules-count" id="savedSchedulesCount">0 guardats</span>
+                        </div>
+                        <p class="saved-schedules-hint">Selecciona un horari per carregar-lo, canviar-li el nom o
+                            eliminar-lo.</p>
+                        <div class="saved-schedules-controls">
+                            <select class="saved-schedules-select" id="savedSchedulesSelect">
+                                <option value="">No hi ha horaris guardats</option>
+                            </select>
+                            <button class="event-btn load-schedule-btn" disabled id="loadSavedScheduleBtn">
+                                Carregar al calendari
+                            </button>
+                            <button class="event-btn rename-schedule-btn" disabled id="renameSavedScheduleBtn">
+                                Reanomena
+                            </button>
+                            <button class="event-btn remove-schedule-btn" disabled id="removeSavedScheduleBtn">
+                                Eliminar
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="calendar-bottom-column">
+                    <div class="form-section calendar-section" id="calendarViewSection">
+                        <div aria-label="Navegació del calendari" class="calendar-month-header">
+                            <button class="nav-btn" id="prevMonth" title="Mes anterior">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 18l-6-6 6-6" />
+                                </svg>
+                            </button>
+                            <div aria-live="polite" class="current-month" id="currentMonth"></div>
+                            <button class="nav-btn" id="nextMonth" title="Mes següent">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 18l6-6-6-6" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="calendar-wrapper">
+                            <div class="calendar-view month-view" id="monthView" style="display: none;">
+                                <div class="calendar-weekdays">
+                                    <div class="weekday">Dll</div>
+                                    <div class="weekday">Dm</div>
+                                    <div class="weekday">Dc</div>
+                                    <div class="weekday">Dj</div>
+                                    <div class="weekday">Dv</div>
+                                    <div class="weekday weekend">Dss</div>
+                                    <div class="weekday weekend">Dg</div>
+                                </div>
+                                <div class="calendar-days" id="calendarDays">
+                                    <!-- Days will be generated by JavaScript -->
+                                </div>
+                            </div>
+
+                            <div class="calendar-view week-view" id="weekView">
+                                <div class="week-changer" id="weekChanger">
+                                    <button aria-label="Setmana anterior" class="week-nav-btn" id="prevWeekBtn">
+                                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15 18l-6-6 6-6" />
+                                        </svg>
+                                    </button>
+
+                                    <div class="week-label" id="weekLabel">Setmana</div>
+
+                                    <button aria-label="Setmana següent" class="week-nav-btn" id="nextWeekBtn">
+                                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9 18l6-6-6-6" />
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <div class="week-header" id="weekHeader">
+                                    <!-- Week days will be generated by JavaScript -->
+                                </div>
+                                <div class="week-grid" id="weekGrid">
+                                    <!-- Time slots will be generated by JavaScript -->
+                                </div>
+                            </div>
+
+                            <div class="calendar-view agenda-view" id="agendaView" style="display: none;">
+                                <div class="agenda-list" id="agendaList">
+                                    <!-- Agenda items will be generated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section legend-section" id="legendSection">
+                        <h2 class="visualizer-title">Visualitzador</h2>
+                        <div aria-label="Controls de visualització del calendari" class="calendar-actions"
+                            role="region">
+                            <button class="today-btn" id="todayBtn">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <rect height="18" rx="2" ry="2" width="18" x="3" y="4" />
+                                    <line x1="16" x2="16" y1="2" y2="6" />
+                                    <line x1="8" x2="8" y1="2" y2="6" />
+                                    <line x1="3" x2="21" y1="10" y2="10" />
+                                </svg>
+                                Avui
+                            </button>
+                            <div class="view-toggle">
+                                <button class="view-btn" data-view="month" title="Vista mensual">
+                                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect height="7" width="7" x="3" y="3" />
+                                        <rect height="7" width="7" x="14" y="3" />
+                                        <rect height="7" width="7" x="14" y="14" />
+                                        <rect height="7" width="7" x="3" y="14" />
+                                    </svg>
+                                </button>
+                                <button class="view-btn active" data-view="week" title="Vista setmanal">
+                                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <line x1="4" x2="4" y1="3" y2="21" />
+                                        <line x1="8" x2="8" y1="3" y2="21" />
+                                        <line x1="12" x2="12" y1="3" y2="21" />
+                                        <line x1="16" x2="16" y1="3" y2="21" />
+                                        <line x1="20" x2="20" y1="3" y2="21" />
+                                    </svg>
+                                </button>
+                                <button class="view-btn" data-view="agenda" title="Vista agenda">
+                                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <line x1="8" x2="21" y1="6" y2="6" />
+                                        <line x1="8" x2="21" y1="12" y2="12" />
+                                        <line x1="8" x2="21" y1="18" y2="18" />
+                                        <line x1="3" x2="3.01" y1="6" y2="6" />
+                                        <line x1="3" x2="3.01" y1="12" y2="12" />
+                                        <line x1="3" x2="3.01" y1="18" y2="18" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <h2>Llegenda</h2>
+                        <ul aria-label="Llegenda del calendari" class="legend-grid" role="list">
+                            <li class="legend-item" role="listitem">
+                                <span aria-hidden="true" class="legend-color theory"></span>
+                                <span class="legend-text">Classe teòrica</span>
+                            </li>
+                            <li class="legend-item" role="listitem">
+                                <span aria-hidden="true" class="legend-color practice"></span>
+                                <span class="legend-text">Classe pràctica</span>
+                            </li>
+                            <li class="legend-item" role="listitem">
+                                <span aria-hidden="true" class="legend-color examens"></span>
+                                <span class="legend-text">Examens</span>
+                            </li>
+                            <li class="legend-item" role="listitem">
+                                <span aria-hidden="true" class="legend-color recuperacions"></span>
+                                <span class="legend-text">Recuperacions</span>
+                            </li>
+                            <li class="legend-item" role="listitem">
+                                <span aria-hidden="true" class="legend-color no_lectiu"></span>
+                                <span class="legend-text">No lectiu</span>
+                            </li>
+                            <li class="legend-item" role="listitem">
+                                <span aria-hidden="true" class="legend-color vacances"></span>
+                                <span class="legend-text">Vacances</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- Modal per renombrar horari guardat -->
+    <div class="modal-overlay" id="renameScheduleModalOverlay">
+        <div class="modal-container" id="renameScheduleModal">
+            <div class="modal-header">
+                <h3>Renombra l'horari</h3>
+            </div>
+            <form class="modal-form" id="renameScheduleForm">
+                <div class="form-group">
+                    <label for="renameScheduleInput">Com vols nombrar l'horari?<span class="required">*</span></label>
+                    <input id="renameScheduleInput" maxlength="80" placeholder="Ex: Horari 2n trimestre" required
+                        type="text">
+                </div>
+                <div class="modal-actions">
+                    <button class="secondary-button" id="cancelRenameScheduleBtn" type="button">Cancel·lar</button>
+                    <button class="primary-button" id="saveRenameScheduleBtn" type="submit">Desar nom</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Auth state debe cargarse primero -->
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/auth-state.js"></script>
+    <script>
+        // Protegir aquesta pàgina - requerir autenticació
+        if (!AuthState.isAuthenticated()) {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <script src="scripts/sidebar.js"></script>
+    <script src="scripts/header-auth.js"></script>
+    <script src="scripts/nav-auth.js"></script>
+    <script src="scripts/header.js"></script>
+    <script src="scripts/sidebar-auth.js"></script>
+    <script src="scripts/academic-calendar.js"></script>
+    <script src="scripts/calendar.js"></script>
+</body>
+
+</html>
