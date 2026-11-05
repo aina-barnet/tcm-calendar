@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Punt d'informació - TCM Calendar</title>
+    <link href="styles/fonts.css" rel="stylesheet">
+    <link href="styles/base.css" rel="stylesheet">
+    <link href="styles/profile.css" rel="stylesheet">
+    <link href="styles/calendar.css" rel="stylesheet">
+    <link href="styles/calendar-enhanced.css" rel="stylesheet">
+    <link href="styles/responsive.css" rel="stylesheet">
+    <link href="styles/transitions.css" rel="stylesheet">
+    <link href="styles/header.css" rel="stylesheet">
+    <link href="styles/sidebar.css" rel="stylesheet">
+    <link href="styles/sidebar-profile.css" rel="stylesheet">
+    <link href="styles/nav-auth.css" rel="stylesheet">
+    <link href="styles/info.css" rel="stylesheet">
+    <link href="styles/shared-components.css" rel="stylesheet">
+    <link href="styles/consistency.css" rel="stylesheet">
+</head>
+
+<body class="info-page">
+<div aria-hidden="true" class="sidebar-overlay" id="sidebarOverlay"></div>
+<!-- Menu Button -->
+<button aria-expanded="false" aria-label="Obrir/Tancar menú de navegació" class="menu-button" id="toggleSidebar">
+    <span aria-hidden="true">☰</span>
+</button>
+
+<!-- Top Header -->
+<header class="top-header">
+    <div class="header-container">
+        <div class="logo-section">
+            <img alt="TecnoCampus" class="tecnocampus-logo" src="assets/images/logo_horitz.png">
+        </div>
+        <div class="auth-section" id="headerAuthSection">
+            <!-- Contingut generat dinàmicament per auth-state -->
+        </div>
+    </div>
+</header>
+
+<!-- Sidebar -->
+<aside aria-label="Navegació principal" class="sidebar" role="navigation">
+    <div class="sidebar-header">
+        <img alt="TCM Calendar" class="sidebar-logo" src="assets/images/logo_app.svg">
+    </div>
+    <nav class="sidebar-nav">
+        <div class="nav-main">
+            <ul>
+                <li>
+                    <a class="nav-item" href="tcm-calendar.html">
+                        <span>Inici</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item" href="saved-calendars.html">
+                        <span>El meu calendari</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item" href="calendar-creation.html">
+                        <span>Crea el teu horari</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item active" href="about-tcm-calendar.html">
+                        <span>Punt d'informació</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</aside>
+
+<!-- Hero Section -->
+<section class="profile-hero">
+    <div class="profile-hero-content">
+        <h1>Punt d'informació</h1>
+        <p class="profile-subtitle">Tot el que necessites saber sobre TCM Calendar</p>
+    </div>
+    <div class="profile-hero-decoration"></div>
+</section>
+
+<section aria-label="Resum ràpid de TCM Calendar" class="info-overview">
+    <div class="profile-container calendar-container">
+        <div class="overview-grid">
+            <article class="overview-item">
+                <h2>Planifica millor</h2>
+                <p>Compara diferents opcions d'horaris i decideix amb criteri abans de formalitzar la matrícula.</p>
+            </article>
+            <article class="overview-item">
+                <h2>Estalvia temps</h2>
+                <p>Evita muntar horaris manualment i redueix errors de solapament o conflicte d'horaris.</p>
+            </article>
+            <article class="overview-item">
+                <h2>Consulta sempre</h2>
+                <p>Guarda les teves opcions i revisa-les en vista setmanal quan ho necessitis al llarg del curs.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Índex de continguts -->
+<nav aria-label="Índex de continguts" class="info-nav">
+    <div class="profile-container calendar-container">
+        <h2 class="info-nav-title">Continguts</h2>
+        <p aria-label="Consell de navegació" class="keyboard-hint">
+            <small>Utilitzeu les tecles de navegació o feu clic per accedir a cada secció.</small>
+        </p>
+        <ul class="info-nav-list">
+            <li><a class="info-nav-link" href="#que-es">Què és TCM Calendar?</a></li>
+            <li><a class="info-nav-link" href="#per-que">Per què utilitzar-la?</a></li>
+            <li><a class="info-nav-link" href="#com-funciona">Com funciona?</a></li>
+            <li><a class="info-nav-link" href="#a-qui">A qui va dirigida?</a></li>
+            <li><a class="info-nav-link" href="#diferent">Per què és diferent?</a></li>
+            <li><a class="info-nav-link" href="#context">Context i motivació</a></li>
+            <li><a class="info-nav-link" href="#faq">Preguntes freqüents</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="main-content" role="main">
+    <div class="profile-container calendar-container">
+        <article class="form-section" id="que-es" tabindex="0">
+            <h2>
+                <span aria-hidden="true" class="section-icon"></span>
+                Què és TCM Calendar?
+            </h2>
+            <p>TCM Calendar és una eina web concebuda per facilitar la planificació i la personalització dels
+                horaris acadèmics dels estudiants del TecnoCampus. L’aplicació proporciona una experiència
+                intuïtiva
+                i eficient, adaptant-se a les particularitats de cada trajectòria acadèmica.</p>
+        </article>
+
+        <article class="form-section" id="per-que" tabindex="0">
+            <h2>
+                <span aria-hidden="true" class="section-icon"></span>
+                Per què utilitzar aquesta aplicació?
+            </h2>
+            <ul role="list">
+                <li>Permet generar, comparar i seleccionar diferents escenaris d’horari segons les necessitats
+                    individuals de l’usuari.
+                </li>
+                <li>Elimina la necessitat de planificació manual i minimitza el risc d’errors de solapament
+                    d’assignatures.
+                </li>
+                <li>Optimitza el temps de l’estudiant i facilita la presa de decisions abans de formalitzar la
+                    matrícula.
+                </li>
+                <li>Detecta automàticament conflictes d’horari i intervals ineficients entre classes.</li>
+                <li>Ofereix la possibilitat d’establir preferències personals, com ara blocs de temps no
+                    disponibles.
+                </li>
+                <li>Permet exportar els horaris generats en formats habituals per a la seva consulta fora de
+                    línia.
+                </li>
+            </ul>
+        </article>
+
+        <article class="form-section" id="com-funciona" tabindex="0">
+            <h2>
+                <span aria-hidden="true" class="section-icon"></span>
+                Com funciona?
+            </h2>
+            <p>L’aplicació integra dades oficials d’horaris, grups i assignatures mitjançant la connexió amb
+                l’API
+                de WebUntis, garantint que la informació sigui actualitzada i fiable. L’usuari pot simular
+                diferents
+                combinacions d’assignatures, establir restriccions i visualitzar els resultats de manera
+                immediata.
+            </p>
+        </article>
+
+        <article class="form-section" id="a-qui" tabindex="0">
+            <h2>
+                <span aria-hidden="true" class="section-icon"></span>
+                A qui va dirigida?
+            </h2>
+            <ul role="list">
+                <li>Estudiants amb assignatures pendents de cursos anteriors.</li>
+                <li>Alumnes que combinen estudis amb activitats laborals o pràctiques.</li>
+                <li>Estudiants amb itineraris personalitzats, dobles titulacions o simultaneïtats.</li>
+                <li>Qualsevol estudiant que desitgi optimitzar el seu horari de manera personalitzada.</li>
+            </ul>
+        </article>
+
+        <article class="form-section" id="diferent" tabindex="0">
+            <h2>
+                <span aria-hidden="true" class="section-icon"></span>
+                Per què és diferent?
+            </h2>
+            <p>TCM Calendar es distingeix per combinar la fiabilitat de les dades oficials amb la flexibilitat
+                d’una
+                aplicació moderna i interactiva. L’usuari pot simular, comparar i avaluar escenaris abans de
+                prendre
+                decisions, superant les limitacions de les eines tradicionals.</p>
+        </article>
+
+        <article class="form-section" id="context" tabindex="0">
+            <h2>
+                <span aria-hidden="true" class="section-icon"></span>
+                Context i motivació
+            </h2>
+            <p>El TecnoCampus promou un model educatiu centrat en l’estudiant, que fomenta la presa de decisions
+                informada i l’autonomia. Aquesta aplicació s’ha desenvolupat per donar suport a l’alumnat en la
+                gestió acadèmica, especialment per a aquells amb trajectòries no lineals o necessitats
+                específiques.
+            </p>
+        </article>
+
+        <article class="form-section" id="faq" tabindex="0">
+            <h2>
+                <span aria-hidden="true" class="section-icon"></span>
+                Preguntes freqüents
+            </h2>
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>Necessito tenir compte per generar horaris?</summary>
+                    <p>Sí. El compte permet desar les teves opcions i recuperar-les després a la secció de
+                        calendari.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Puc guardar més d'un horari?</summary>
+                    <p>Sí. Pots guardar diferents propostes i carregar la que vulguis consultar.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>La informació d'horaris és fiable?</summary>
+                    <p>L'aplicació treballa amb dades oficials, és a dir, amb les publicades per la institució.</p>
+                </details>
+            </div>
+        </article>
+
+        <!-- Botó per tornar a dalt -->
+        <div class="back-to-top-container">
+            <button aria-label="Tornar a dalt" class="back-to-top-btn" id="backToTopBtn" title="Tornar a dalt">
+                <span aria-hidden="true">↑</span>
+            </button>
+        </div>
+    </div>
+</main>
+<!-- Auth state debe cargarse primero -->
+<script src="scripts/utils.js"></script>
+<script src="scripts/auth-state.js"></script>
+<script src="scripts/sidebar.js"></script>
+<script src="scripts/index-auth.js"></script>
+<script src="scripts/sidebar-auth.js"></script>
+<script src="scripts/information.js"></script>
+</body>
+
+</html>
