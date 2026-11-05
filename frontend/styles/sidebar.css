@@ -1,0 +1,195 @@
+/* Sidebar styles */
+.sidebar {
+    width: 300px;
+    height: calc(100vh - 100px);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: #1A202C;
+    padding: 28px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: fixed;
+    left: 20px;
+    top: 80px;
+    border-radius: 24px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-330px);
+    border: 1px solid rgba(223, 160, 35, 0.12);
+}
+
+.sidebar.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+/* Sidebar overlay */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(3px);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sidebar-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Sidebar header */
+.sidebar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0 20px 0;
+    margin-bottom: 24px;
+    border-bottom: 2px solid rgba(223, 160, 35, 0.15);
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1A202C;
+    font-family: 'Open Serif Book', serif;
+    letter-spacing: -0.3px;
+}
+
+.sidebar-logo {
+    height: 75px;
+    width: 100%;
+    margin: 0;
+}
+
+/* Navigation main section */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 70px);
+    justify-content: space-between;
+}
+
+.nav-main {
+    flex-grow: 1;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    padding: 0;
+    margin: 8px 0;
+}
+
+.sidebar-nav .nav-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 18px;
+    color: #4A5568;
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 12px;
+    background: transparent;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.2px;
+    position: relative;
+}
+
+.sidebar-nav .nav-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 0;
+    background: linear-gradient(180deg, #DFA023, #F0B429);
+    border-radius: 0 2px 2px 0;
+    transition: height 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sidebar-nav .nav-item:hover {
+    background: linear-gradient(135deg, rgba(223, 160, 35, 0.08) 0%, rgba(240, 180, 41, 0.12) 100%);
+    color: #C68E1F;
+    transform: translateX(4px);
+}
+
+.sidebar-nav .nav-item:hover::before {
+    height: 60%;
+}
+
+.sidebar-nav .nav-item.active {
+    background: linear-gradient(135deg, rgba(223, 160, 35, 0.12) 0%, rgba(240, 180, 41, 0.18) 100%);
+    color: #C68E1F;
+    font-weight: 600;
+}
+
+.sidebar-nav .nav-item.active::before {
+    height: 70%;
+}
+
+/* Menu Button */
+.menu-button {
+    position: fixed;
+    top: 22px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(223, 160, 35, 0.2);
+    color: #4A5568;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1001;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.menu-button:hover {
+    color: #DFA023;
+    background: white;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 30px rgba(223, 160, 35, 0.2);
+    border-color: rgba(223, 160, 35, 0.4);
+}
+
+.menu-button:active {
+    transform: translateY(-1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        width: calc(100% - 40px);
+        max-width: 320px;
+        height: calc(100vh - 100px);
+        left: 20px;
+    }
+
+    .menu-button {
+        top: 20px;
+        left: 20px;
+        width: 42px;
+        height: 42px;
+        font-size: 22px;
+    }
+}

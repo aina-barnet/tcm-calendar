@@ -1,0 +1,237 @@
+.top-header {
+    background: var(--glass-surface);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(223, 160, 35, 0.18);
+    padding: 18px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-xs), var(--shadow-sm);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.top-header:hover {
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: var(--shadow-sm), var(--shadow-md);
+}
+
+.header-hidden {
+    transform: translateY(-100%);
+    box-shadow: none;
+}
+
+.header-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    width: 100%;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-right: auto;
+    flex-shrink: 0;
+}
+
+.logo-wrapper {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.logo-wrapper:hover {
+    transform: scale(1.05);
+}
+
+.tecnocampus-logo {
+    height: 70px;
+    width: auto;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.04));
+}
+
+.tecnocampus-logo:hover {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));
+}
+
+.title-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.site-title {
+    font-size: clamp(1.9rem, 1.45rem + 1.1vw, 2.55rem);
+    color: var(--text-primary);
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    line-height: 1.05;
+}
+
+.header-subtitle {
+    font-family: var(--font-body);
+    color: var(--text-secondary);
+    font-size: 0.86rem;
+    margin: 0;
+    white-space: nowrap;
+    opacity: 0.9;
+}
+
+.auth-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: auto;
+    padding-left: 1.5rem;
+    flex-shrink: 0;
+}
+
+.auth-button {
+    padding: 11px 26px;
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    min-width: 130px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.register-btn {
+    background: rgba(223, 160, 35, 0.06);
+    color: var(--primary-dark);
+    border: 1.5px solid rgba(223, 160, 35, 0.25);
+}
+
+.register-btn:hover {
+    background: rgba(223, 160, 35, 0.12);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+    border-color: rgba(223, 160, 35, 0.4);
+}
+
+.login-btn {
+    background: var(--accent-gradient);
+    color: white;
+    border: none;
+    box-shadow: var(--shadow-glow);
+}
+
+.login-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-glow);
+    filter: brightness(1.08);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 20px;
+    background: var(--hero-bg-gradient);
+    border-radius: 50px;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    min-width: 200px;
+    border: 1px solid rgba(223, 160, 35, 0.12);
+}
+
+.user-info:hover {
+    background: linear-gradient(135deg, rgba(223, 160, 35, 0.10) 0%, rgba(240, 180, 41, 0.14) 100%);
+    box-shadow: 0 4px 16px rgba(223, 160, 35, 0.12);
+    border-color: rgba(223, 160, 35, 0.2);
+}
+
+.username {
+    color: var(--primary-dark);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-avatar {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.avatar-img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 3px solid rgba(223, 160, 35, 0.4);
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--shadow-sm);
+}
+
+.user-avatar:hover .avatar-img {
+    transform: scale(1.08);
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-glow);
+}
+
+.avatar-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.welcome-text {
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 1em;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.container {
+    margin-top: 120px;
+    padding: 40px 20px;
+    background-color: var(--bg-secondary);
+    position: relative;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background-color: var(--bg-primary);
+}
+
+@media (max-width: 768px) {
+    .header-subtitle {
+        display: none;
+    }
+
+    .nav-list {
+        gap: 15px;
+    }
+
+    .user-section {
+        gap: 10px;
+    }
+}

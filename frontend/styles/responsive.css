@@ -1,0 +1,79 @@
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: calc(100% - 40px);
+        max-width: 300px;
+        height: calc(100vh - 100px);
+        transform: translateX(-100%);
+        left: 20px;
+        top: 80px;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .container {
+        margin: 20px;
+        width: calc(100% - 40px);
+        max-width: none;
+    }
+
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    .sidebar-overlay.show {
+        display: block;
+    }
+
+    /* Adjustments for the header in mobile */
+    .main-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+
+    .view-options {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+}
+
+@media (max-width: 600px) {
+    .calendar-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .calendar-grid {
+        grid-template-columns: repeat(7, 1fr);
+        max-width: 100%;
+    }
+
+    .calendar-day {
+        padding: 10px 5px;
+        font-size: 0.9em;
+    }
+
+    .day-header {
+        padding: 10px 5px;
+        font-size: 0.8em;
+    }
+
+    .day {
+        min-height: 60px;
+    }
+}

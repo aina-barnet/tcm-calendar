@@ -1,0 +1,26 @@
+/* Jigsaw Font - For headings */
+@font-face {
+    font-family: 'Jigsaw';
+    src: url('../assets/fonts/Jigsaw.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Open Serif Book Font - For body text */
+@font-face {
+    font-family: 'Open Serif Book';
+    src: url('../assets/fonts/OpenSerifBook.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Typography utility classes */
+.heading-font {
+    font-family: 'Jigsaw', sans-serif;
+}
+
+.body-font {
+    font-family: 'Open Serif Book', serif;
+}

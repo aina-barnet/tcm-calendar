@@ -1,0 +1,421 @@
+/* Global consistency overrides — loaded last to enforce visual consistency */
+
+/* Base typography */
+body {
+    font-family: var(--font-family-body);
+    font-size: var(--fs-base);
+    line-height: var(--body-line-height);
+    color: var(--text-primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-family-heading);
+    line-height: var(--heading-line-height) !important;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 0.6em;
+    color: var(--secondary-color);
+}
+
+/* Gentle hero tweaks for balance */
+.profile-hero.calendar-hero .profile-hero-content {
+    padding: 18px 20px;
+}
+
+/* More specific heading rules to override page-specific CSS (profile-hero, info pages) */
+.profile-hero h1,
+.profile-hero .profile-hero-content h1,
+.profile-hero.calendar-hero .profile-hero-content h1,
+.hero-section h1,
+.welcome-content h1,
+.info-page h1 {
+    font-size: clamp(2.25rem, 1.7rem + 2.2vw, 3.45rem) !important;
+    line-height: var(--heading-line-height) !important;
+}
+
+h1 {
+    font-size: clamp(2rem, 1.45rem + 2vw, 3rem) !important;
+    line-height: var(--heading-line-height) !important;
+}
+
+h2 {
+    font-size: clamp(1.55rem, 1.2rem + 1.25vw, 2.2rem) !important;
+}
+
+h3 {
+    font-size: clamp(1.18rem, 1.02rem + 0.7vw, 1.55rem) !important;
+}
+
+h4 {
+    font-size: clamp(1rem, 0.96rem + 0.35vw, 1.18rem) !important;
+}
+
+.app-title h1 {
+    font-size: clamp(2.25rem, 1.8rem + 2vw, 3.2rem) !important;
+    letter-spacing: -0.03em;
+}
+
+/* Subtitles and small headings */
+.profile-subtitle,
+.auth-subtitle {
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+}
+
+/* Buttons and CTAs */
+button,
+.auth-button,
+.google-button,
+.view-btn {
+    font-family: var(--font-family-heading);
+    font-size: var(--fs-md);
+}
+
+/* Profile and sidebar consistency */
+.profile-name {
+    font-size: var(--fs-md);
+}
+
+.sidebar-nav span {
+    font-size: var(--fs-sm);
+}
+
+/* Forms */
+label {
+    font-size: var(--fs-sm);
+}
+
+input,
+select,
+textarea {
+    font-size: var(--fs-md);
+}
+
+/* Hero spacing */
+.profile-hero .profile-hero-content {
+    gap: 8px;
+}
+
+/* Unified larger hero across the app */
+.profile-hero {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: visible;
+    margin-bottom: 1rem;
+}
+
+/* Make hero visually prominent: subtle surface + shadow + accent */
+.profile-hero {
+    background: linear-gradient(135deg, #C68E1F 0%, #DFA023 50%, #F0B429 100%);
+    box-shadow: 0 12px 40px rgba(15, 23, 42, 0.06);
+    border-bottom: 1px solid rgba(255, 122, 0, 0.06);
+    backdrop-filter: blur(4px);
+}
+
+/* Stronger visual treatment */
+.profile-hero {
+    background: linear-gradient(135deg, #C68E1F 0%, #DFA023 50%, #F0B429 100%);
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+    border-bottom: 1px solid rgba(255, 122, 0, 0.08);
+}
+
+.profile-hero .profile-hero-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.profile-hero h1,
+.profile-hero .profile-hero-content h1 {
+    font-family: 'Jigsaw', serif;
+    font-size: clamp(2.75rem, 2.2rem + 2.5vw, 4rem) !important;
+    line-height: 1.02 !important;
+    font-weight: 800 !important;
+    margin: 0 0 0.35rem 0 !important;
+    background: linear-gradient(135deg, #C68E1F 0%, #DFA023 50%, #F0B429 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* subtle highlight under the heading */
+.profile-hero .profile-hero-content::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 6px;
+    margin: 14px auto 0;
+    border-radius: 6px;
+    background: #C97A00;
+    box-shadow: 0 6px 18px rgba(201, 122, 0, 0.08);
+    transform-origin: center;
+    animation: none !important;
+}
+
+.profile-hero h1 {
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* removed pulsing accent to maintain a formal tone */
+
+/* Hero entrance animation */
+.profile-hero .profile-hero-content {
+    opacity: 0;
+    transform: translateY(6px);
+    animation: hero-appear 420ms cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+}
+
+@keyframes hero-appear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .profile-hero .profile-hero-content,
+    .profile-hero .profile-hero-content::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+.profile-subtitle {
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    color: var(--text-secondary) !important;
+    margin: 0.35rem auto 0 !important;
+    max-width: 820px !important;
+    line-height: 1.45 !important;
+}
+
+.profile-hero .profile-hero-decoration {
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 320px;
+    height: 320px;
+    /* stronger warm radial glow */
+    background: radial-gradient(circle at 30% 30%, rgba(255, 122, 0, 0.32) 0%, rgba(255, 122, 0, 0.14) 35%, transparent 65%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+    filter: blur(12px);
+    opacity: 0.95;
+}
+
+@media (max-width: 900px) {
+    .profile-hero {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .profile-hero h1 {
+        font-size: clamp(2rem, 1.6rem + 2vw, 2.6rem) !important;
+    }
+
+    .profile-hero .profile-hero-decoration {
+        width: 260px;
+        height: 260px;
+        top: -50px;
+        right: -40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-hero {
+        padding-top: 2.2rem;
+        padding-bottom: 2.2rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .profile-subtitle {
+        font-size: 1.05rem !important;
+        max-width: 92% !important;
+    }
+
+    .profile-hero .profile-hero-decoration {
+        display: none;
+    }
+}
+
+/* Make hero full-bleed even when inside a centered container */
+.profile-container > .profile-hero,
+.profile-container .profile-hero {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    box-sizing: border-box;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    border-radius: 0;
+}
+
+/* Polished hero aesthetics (formalized): muted, subtle depth */
+.profile-hero {
+    /* warmer layered background to favour orange tones */
+    background-image: radial-gradient(circle at 12% 18%, rgba(255, 122, 0, 0.18) 0%, transparent 22%),
+    linear-gradient(180deg, rgba(255, 243, 230, 1), rgba(255, 238, 225, 1));
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0 8px 26px rgba(15, 23, 42, 0.05);
+}
+
+.profile-hero::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0));
+    mix-blend-mode: overlay;
+    opacity: 0.28;
+}
+
+.profile-hero .profile-hero-decoration {
+    filter: blur(12px);
+    opacity: 0.82;
+    transform: translate3d(4px, -4px, 0) scale(1);
+}
+
+/* Accent bar: subtle, restrained */
+.profile-hero .profile-hero-content::after {
+    width: 100px;
+    height: 6px;
+    margin-top: 14px;
+    border-radius: 6px;
+    background: #C97A00;
+    box-shadow: 0 6px 18px rgba(201, 122, 0, 0.08);
+    animation: none !important;
+}
+
+/* Optional CTA styling (add `<a class="cta">` inside hero content to use) */
+.profile-hero .cta {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.7rem 1.1rem;
+    border-radius: 8px;
+    font-weight: 700;
+    color: #4a2e00;
+    background: #fff;
+    border: 1px solid #C97A00;
+    box-shadow: none;
+    text-decoration: none;
+    transition: background 160ms ease, transform 160ms ease;
+}
+
+.profile-hero .cta:hover {
+    background: #fff7ee;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+    .profile-hero::before {
+        opacity: 0.5;
+    }
+
+    .profile-hero .profile-hero-decoration {
+        filter: blur(12px);
+    }
+}
+
+/* Ensure calendar page hero subtitles are centered and readable */
+.profile-hero.calendar-hero .profile-subtitle {
+    text-align: center;
+    margin: 0.25rem auto 0;
+    max-width: 720px;
+}
+
+/* Restore the canonical profile hero look for calendar pages */
+.profile-hero.calendar-hero {
+    margin-top: 80px;
+    padding: 3rem 2rem;
+    background: var(--hero-bg-gradient);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(223, 160, 35, 0.15);
+}
+
+.profile-hero.calendar-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: var(--hero-radial-gradient-soft);
+    animation: heroGlow 15s ease-in-out infinite;
+}
+
+.profile-hero.calendar-hero .profile-hero-decoration {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(223, 160, 35, 0.12) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+/* Make sure small utility components inherit the base font */
+.info-box-warning,
+.info-box-neutral,
+.info-box-neutral-sm,
+.error-message {
+    font-size: var(--fs-sm);
+}
+
+/* Ensure reading progress and other small elements remain visible and consistent */
+.reading-progress-bar {
+    height: 4px;
+}
+
+/* Information page: match generate-calendar hero styles explicitly */
+.info-page .profile-hero.calendar-hero .profile-hero-content h1 {
+    font-family: 'Jigsaw', serif;
+    background: linear-gradient(135deg, #FF7A00 0%, #FF8C1A 50%, #FFB84D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+}
+
+.info-page .profile-hero.calendar-hero .profile-subtitle {
+    font-size: var(--fs-md);
+    color: var(--text-secondary);
+    font-family: var(--font-family-body);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: var(--body-line-height);
+}
+
+/* A final safety: ensure root fonts fallback if variables missing */
+:root {
+    --fs-base: 1rem;
+    --fs-sm: 0.9rem;
+    --fs-md: 1rem;
+    --fs-lg: 1.25rem;
+    --fs-xl: 1.6rem;
+    --fs-xxl: 2rem;
+}

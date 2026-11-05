@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360">
+  <style>
+    .bar{fill:#2b7cff;opacity:0.9}
+    .bar2{fill:#ff6b6b;opacity:0.9}
+    .overlap{fill:#ffb86b;opacity:0.9}
+    .text{font-family:Arial, Helvetica, sans-serif; font-size:13px; fill:#111}
+    .title{font-weight:700; font-size:16px}
+  </style>
+
+  <text x="450" y="30" text-anchor="middle" class="text title">Càlcul de conflictes (detall d'una parella)</text>
+
+  <!-- Timeline labels -->
+  <text x="60" y="70" class="text">08:00</text>
+  <text x="160" y="70" class="text">09:00</text>
+  <text x="260" y="70" class="text">10:00</text>
+  <text x="360" y="70" class="text">11:00</text>
+  <text x="460" y="70" class="text">12:00</text>
+  <text x="560" y="70" class="text">13:00</text>
+  <text x="660" y="70" class="text">14:00</text>
+
+  <!-- Entry A (selected) -->
+  <rect x="100" y="90" width="220" height="36" class="bar" rx="6"/>
+  <text x="210" y="115" text-anchor="middle" class="text">Subjecte X — Teoria (09:15-11:00)</text>
+
+  <!-- Entry B (candidate) -->
+  <rect x="240" y="140" width="220" height="36" class="bar2" rx="6"/>
+  <text x="350" y="165" text-anchor="middle" class="text">Subjecte Y — Pràctiques (10:30-12:00)</text>
+
+  <!-- Overlap highlighted -->
+  <rect x="240" y="90" width="80" height="36" class="overlap" rx="6" />
+  <text x="280" y="110" class="text">Overlap 10:30-11:00 (30 min)</text>
+
+  <!-- Formulas / rules -->
+  <g transform="translate(20,220)">
+    <rect x="0" y="0" width="860" height="110" fill="#f7f7f9" stroke="#d0d7df" rx="8"/>
+    <text x="12" y="22" class="text" style="font-weight:700">Regles per a `isConflict(first, second)`</text>
+    <text x="12" y="44" class="text">- `term` igual (mateix trimestre/assignatura)</text>
+    <text x="12" y="64" class="text">- `dayOfWeek` igual</text>
+    <text x="12" y="84" class="text">- `weeksOverlap` (weekType compatible o null)</text>
+    <text x="12" y="104" class="text">- intervals temporals s'entrecreuen: start1 < end2 && start2 < end1</text>
+  </g>
+
+</svg>
+<!-- Footer note: CSP remark for presentation -->
+<g>
+  <rect x="20" y="330" width="860" height="28" fill="#f7f7f9" stroke="#d0d7df" rx="6"/>
+  <text x="450" y="350" text-anchor="middle" style="font-family:Arial, Helvetica, sans-serif; font-size:11px; fill:#333;">Nota: L'algorisme no és un solver CSP; comprova conflictes incrementalment parella-a-parella. Un solver CSP integraria forward-checking i arc-consistency per podar dominis.</text>
+</g>

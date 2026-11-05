@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0; url=user-profile.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirigint al perfil</title>
+    <script>
+        (function () {
+            var target = 'user-profile.html' + window.location.search + window.location.hash;
+            window.location.replace(target);
+        })();
+    </script>
+</head>
+
+<body>
+    <p>Redirigint al perfil... <a href="user-profile.html">Continua</a></p>
+</body>
+
+</html>

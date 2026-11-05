@@ -1,0 +1,134 @@
+#custom-popup {
+    --popup-neutral-bg: #F3F4F6;
+    --popup-neutral-border: #CBD5E1;
+    --popup-neutral-text: #64748B;
+    --popup-primary-bg: var(--accent-gradient);
+    --popup-primary-hover: var(--primary-dark);
+    --popup-blue-bg: #587ac2;
+    --popup-blue-hover: #4661a8;
+}
+
+#custom-popup .popup-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+#custom-popup .popup-cancel,
+#custom-popup .popup-logout {
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.7rem 1.5rem;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+#custom-popup .popup-cancel {
+    background: var(--popup-neutral-bg);
+    color: var(--popup-neutral-text);
+    border: 1.5px solid var(--popup-neutral-border);
+}
+
+#custom-popup .popup-cancel:hover {
+    background: #E5E7EB;
+    color: var(--text-primary);
+}
+
+#custom-popup .popup-logout {
+    background: var(--popup-primary-bg);
+    color: #fff;
+    border: none;
+}
+
+#custom-popup .popup-logout:hover {
+    background: var(--popup-primary-hover);
+}
+
+/* Popup styles for profile and general use */
+
+/* ACCIONS SÍ/NO */
+#custom-popup .popup-yes,
+#custom-popup .popup-no {
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.7rem 1.5rem;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+#custom-popup .popup-no {
+    background: var(--popup-neutral-bg);
+    color: var(--popup-neutral-text);
+    border: 1.5px solid var(--popup-neutral-border);
+}
+
+#custom-popup .popup-no:hover {
+    background: #E5E7EB;
+    color: var(--text-primary);
+}
+
+#custom-popup .popup-yes {
+    background: var(--popup-blue-bg);
+    color: #fff;
+    border: none;
+}
+
+#custom-popup .popup-yes:hover {
+    background: var(--popup-blue-hover);
+}
+
+#custom-popup .popup-content {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(88, 122, 194, 0.18);
+    padding: 2.2rem 2.5rem 1.5rem 2.5rem;
+    min-width: 320px;
+    max-width: 90vw;
+    text-align: center;
+    position: relative;
+    border: 2px solid #587ac2;
+    animation: fadeIn 0.3s;
+}
+
+#custom-popup .popup-message {
+    font-size: 1.15rem;
+    color: var(--popup-blue-bg);
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+#custom-popup .popup-close {
+    background: var(--popup-blue-bg);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.2s;
+}
+
+/* Centrat vertical i horitzontal del popup */
+#custom-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+#custom-popup .popup-close:hover {
+    background: var(--popup-blue-hover);
+}
