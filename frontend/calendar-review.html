@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Revisió abans de generar - TCM Calendar</title>
+    <link href="styles/fonts.css" rel="stylesheet">
+    <link href="styles/base.css" rel="stylesheet">
+    <link href="styles/profile.css" rel="stylesheet">
+    <link href="styles/preferences.css" rel="stylesheet">
+    <link href="styles/subjects.css" rel="stylesheet">
+    <link href="styles/review.css" rel="stylesheet">
+    <link href="styles/responsive.css" rel="stylesheet">
+    <link href="styles/transitions.css" rel="stylesheet">
+    <link href="styles/header.css" rel="stylesheet">
+    <link href="styles/sidebar.css" rel="stylesheet">
+    <link href="styles/sidebar-profile.css" rel="stylesheet">
+    <link href="styles/nav-auth.css" rel="stylesheet">
+    <link href="styles/shared-components.css" rel="stylesheet">
+    <link href="styles/consistency.css" rel="stylesheet">
+</head>
+
+<body>
+<div aria-hidden="true" class="sidebar-overlay" id="sidebarOverlay"></div>
+<button aria-expanded="false" aria-label="Obrir/Tancar menú de navegació" class="menu-button" id="toggleSidebar">
+    <span aria-hidden="true">☰</span>
+</button>
+
+<header class="top-header" role="banner">
+    <div class="header-container">
+        <div class="logo-section">
+            <img alt="TecnoCampus" class="tecnocampus-logo" src="assets/images/logo_horitz.png">
+        </div>
+        <div aria-label="Secció d'autenticació" class="auth-section" id="headerAuthSection" role="region">
+            <!-- Contingut generat dinàmicament per auth-state.js -->
+        </div>
+    </div>
+</header>
+
+<aside aria-label="Navegació principal" class="sidebar" role="navigation">
+    <div class="sidebar-header">
+        <img alt="TCM Calendar" class="sidebar-logo" src="assets/images/logo_app.svg">
+    </div>
+    <nav class="sidebar-nav">
+        <div class="nav-main">
+            <ul>
+                <li>
+                    <a class="nav-item" href="tcm-calendar.html">
+                        <span>Inici</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item" href="saved-calendars.html">
+                        <span>El meu calendari</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item active" href="calendar-creation.html">
+                        <span>Crea el teu horari</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item" href="about-tcm-calendar.html">
+                        <span>Punt d'informació</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</aside>
+
+<section class="profile-hero">
+    <div class="profile-hero-content">
+        <h1>Revisió final del teu horari</h1>
+        <p class="profile-subtitle">Comprova les assignatures, les preferències i els crèdits totals abans de
+            llançar el generador.</p>
+    </div>
+    <div class="profile-hero-decoration"></div>
+</section>
+
+<main class="main-content review-page">
+    <div class="profile-container generated-results review-shell">
+        <div aria-label="Flux de creació d'horari" class="progress-steps workflow-quick-nav">
+            <div class="step completed">
+                <a class="step-link" href="subjects-selector.html">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Assignatures</div>
+                </a>
+            </div>
+            <div class="step-line completed"></div>
+            <div class="step completed">
+                <a class="step-link" href="preferences-selector.html">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Preferències</div>
+                </a>
+            </div>
+            <div class="step-line"></div>
+            <div aria-current="step" class="step active">
+                <a class="step-link" href="calendar-review.html">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Revisió</div>
+                </a>
+            </div>
+        </div>
+        <section class="review-grid">
+            <article class="review-panel review-panel-subjects">
+                <div class="review-panel-header">
+                    <div>
+                        <span class="panel-eyebrow">Selecció actual</span>
+                    </div>
+                    <div class="review-panel-badge" id="reviewDegreeBadgePanel">Grau actiu</div>
+                </div>
+                <div class="review-subject-list" id="reviewSubjectList"></div>
+            </article>
+
+            <aside class="review-panel review-panel-summary">
+                <div class="review-panel-header">
+                    <span class="panel-eyebrow">La teva selecció</span>
+                </div>
+                <div class="review-summary-cards">
+                    <div class="review-summary-card">
+                        <span class="review-summary-label">Assignatures</span>
+                        <strong id="reviewSubjectCountCard">0</strong>
+                        <p>Les matèries marcades ara mateix.</p>
+                    </div>
+                    <div class="review-summary-card accent">
+                        <span class="review-summary-label">ECTS</span>
+                        <strong id="reviewEctsCard">0</strong>
+                        <p>Total de crèdits per aquest trimestre.</p>
+                    </div>
+                </div>
+                <div class="review-preferences-block">
+                    <span class="panel-eyebrow">Preferències</span>
+                    <div class="review-preferences-list" id="reviewPreferencesList"></div>
+                </div>
+                <div class="review-note-card">
+                    <strong>Abans de generar:</strong>
+                    <p>Si vols canviar alguna preferència o assignatura, encara ets a temps. Quan premis generar,
+                        passarem a l'horari final.</p>
+                </div>
+            </aside>
+        </section>
+
+        <!-- Action Buttons -->
+        <div class="form-actions">
+            <button class="btn-secondary" id="modifySubjectsBtn" type="button">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+                Modificar assignatures
+            </button>
+
+            <button class="btn-secondary" id="modifyPreferencesBtn" type="button">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+                Modificar preferències
+            </button>
+
+            <div class="primary-actions">
+                <button class="btn-primary" id="continueBtn" type="button">
+                    Continuar
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- (Modal removed) Confirmation handled directly on button press -->
+
+<script src="scripts/utils.js"></script>
+<script src="scripts/auth-state.js"></script>
+<script>
+    if (!AuthState.isAuthenticated()) {
+        window.location.href = 'login.html';
+    }
+</script>
+<script src="scripts/sidebar.js"></script>
+<script src="scripts/header-auth.js"></script>
+<script src="scripts/nav-auth.js"></script>
+<script src="scripts/header.js"></script>
+<script src="scripts/sidebar-auth.js"></script>
+<script src="scripts/generate-review.js"></script>
+</body>
+
+</html>

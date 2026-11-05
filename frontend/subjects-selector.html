@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Seleccionar assignatures - TCM Calendar</title>
+    <link href="styles/fonts.css" rel="stylesheet">
+    <link href="styles/base.css" rel="stylesheet">
+    <link href="styles/profile.css" rel="stylesheet">
+    <link href="styles/calendar.css" rel="stylesheet">
+    <link href="styles/subjects.css" rel="stylesheet">
+    <link href="styles/responsive.css" rel="stylesheet">
+    <link href="styles/transitions.css" rel="stylesheet">
+    <link href="styles/header.css" rel="stylesheet">
+    <link href="styles/sidebar.css" rel="stylesheet">
+    <link href="styles/sidebar-profile.css" rel="stylesheet">
+    <link href="styles/nav-auth.css" rel="stylesheet">
+    <link href="styles/shared-components.css" rel="stylesheet">
+    <link href="styles/consistency.css" rel="stylesheet">
+</head>
+
+<body>
+<div aria-hidden="true" class="sidebar-overlay" id="sidebarOverlay"></div>
+<!-- Botó per obrir/tancar menú lateral -->
+<button aria-expanded="false" aria-label="Obrir/Tancar menú de navegació" class="menu-button" id="toggleSidebar">
+    <span aria-hidden="true">☰</span>
+</button>
+
+<!-- Capçalera superior -->
+<header class="top-header" role="banner">
+    <div class="header-container">
+        <div class="logo-section">
+            <img alt="TecnoCampus" class="tecnocampus-logo" src="assets/images/logo_horitz.png">
+        </div>
+        <div aria-label="Secció d'autenticació" class="auth-section" id="headerAuthSection" role="region">
+            <!-- Contingut generat dinàmicament per auth-state.js -->
+        </div>
+    </div>
+</header>
+
+<!-- Menú lateral -->
+<aside aria-label="Navegació principal" class="sidebar" role="navigation">
+    <div class="sidebar-header">
+        <img alt="TCM Calendar" class="sidebar-logo" src="assets/images/logo_app.svg">
+    </div>
+    <nav class="sidebar-nav">
+        <div class="nav-main">
+            <ul>
+                <li>
+                    <a class="nav-item" href="tcm-calendar.html">
+                        <span>Inici</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item" href="saved-calendars.html">
+                        <span>El meu calendari</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item active" href="calendar-creation.html">
+                        <span>Crea el teu horari</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item" href="about-tcm-calendar.html">
+                        <span>Punt d'informació</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</aside>
+
+<!-- Hero Section -->
+<section class="profile-hero">
+    <div class="profile-hero-content">
+        <h1>Selecciona les teves assignatures</h1>
+        <p class="profile-subtitle">Tria les assignatures que cursaràs aquest trimestre</p>
+    </div>
+    <div class="profile-hero-decoration"></div>
+</section>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="profile-container subjects-container generated-results" id="generatedResults">
+        <div aria-label="Flux de creació d'horari" class="progress-steps workflow-quick-nav">
+            <div aria-current="step" class="step active">
+                <a aria-label="Pas 1: Seleccionar assignatures" class="step-link" href="subjects-selector.html">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Assignatures</div>
+                </a>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+                <a aria-label="Pas 2: Configurar preferències" class="step-link" href="preferences-selector.html">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Preferències</div>
+                </a>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+                <a aria-label="Pas 3: Generar horari" class="step-link" href="calendar-creation.html">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Revisió</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ECTS Counter -->
+        <div class="ects-counter">
+            <div class="ects-info">
+                <span class="ects-label">ECTS totals seleccionats:</span>
+                <span class="ects-value" id="totalEcts">0</span>
+            </div>
+            <div class="ects-bar">
+                <div class="ects-progress" id="ectsProgress" style="width: 0%"></div>
+            </div>
+            <span class="ects-hint">Recomanat: 20 ECTS per trimestre</span>
+        </div>
+
+        <!-- Subject Selection -->
+        <div class="form-section subjects-section">
+            <div class="subjects-header">
+                <h2>Assignatures disponibles</h2>
+                <div class="filter-controls">
+                    <select class="filter-select" id="semesterFilter">
+                        <option value="">Tots els trimestres</option>
+                        <option value="1">1r trimestre</option>
+                        <option value="2">2n trimestre</option>
+                        <option value="3">3r trimestre</option>
+                    </select>
+                    <select class="filter-select" id="courseFilter">
+                        <option value="">Tots els cursos</option>
+                        <option value="1">1r curs</option>
+                        <option value="2">2n curs</option>
+                        <option value="3">3r curs</option>
+                        <option value="4">4t curs</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Subjects List -->
+            <div class="subjects-list" id="subjectsList">
+                <!-- Les assignatures es carreguen dinàmicament des del backend -->
+                <div class="loading-message" style="text-align: center; padding: 40px; color: #666;">
+                    <p>Carregant assignatures...</p>
+                </div>
+            </div>
+
+            <!-- No results message -->
+            <div class="no-results" id="noResults" style="display: none;">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+                <p>No s'han trobat assignatures amb els filtres seleccionats</p>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="form-actions">
+            <button class="btn-secondary" id="modifyBtn" type="button">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+                Modificar grau
+            </button>
+
+            <div class="primary-actions">
+                <button class="btn-secondary" id="saveSubjectsBtn" type="button">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                        <polyline points="17 21 17 13 7 13 7 21"/>
+                        <polyline points="7 3 7 8 15 8"/>
+                    </svg>
+                    Guardar selecció
+                </button>
+                <button class="btn-primary" id="continueBtn" type="button">
+                    Continuar
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<!-- Auth state -->
+<script src="scripts/utils.js"></script>
+<script src="scripts/auth-state.js"></script>
+<script>
+    // Protegir aquesta pàgina - requerir autenticació
+    if (!AuthState.isAuthenticated()) {
+        window.location.href = 'login.html';
+    }
+</script>
+<script src="scripts/sidebar.js"></script>
+<script src="scripts/header-auth.js"></script>
+<script src="scripts/nav-auth.js"></script>
+<script src="scripts/header.js"></script>
+<script src="scripts/sidebar-auth.js"></script>
+<script src="scripts/subjects.js?v=20260526"></script>
+</body>
+
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Configura les teves preferències d'horari - TCM Calendar" name="description">
+    <link href="assets/images/favicon.png" rel="icon" type="image/png">
+    <title>Preferències - TCM Calendar</title>
+    <link href="styles/fonts.css" rel="stylesheet">
+    <link href="styles/base.css" rel="stylesheet">
+    <link href="styles/profile.css" rel="stylesheet">
+    <link href="styles/preferences.css" rel="stylesheet">
+    <link href="styles/subjects.css" rel="stylesheet">
+    <link href="styles/responsive.css" rel="stylesheet">
+    <link href="styles/transitions.css" rel="stylesheet">
+    <link href="styles/header.css" rel="stylesheet">
+    <link href="styles/sidebar.css" rel="stylesheet">
+    <link href="styles/sidebar-profile.css" rel="stylesheet">
+    <link href="styles/nav-auth.css" rel="stylesheet">
+    <link href="styles/shared-components.css" rel="stylesheet">
+    <link href="styles/consistency.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<!-- Menu Button -->
+<button class="menu-button" id="toggleSidebar">
+    <span>☰</span>
+</button>
+
+<!-- Top Header -->
+<header class="top-header">
+    <div class="header-container">
+        <div class="logo-section">
+            <img alt="TecnoCampus" class="tecnocampus-logo" src="assets/images/logo_horitz.png">
+        </div>
+        <div aria-label="Secció d'autenticació" class="auth-section" id="headerAuthSection" role="region">
+            <!-- Contingut generat dinàmicament per auth-state.js -->
+        </div>
+    </div>
+</header>
+
+<!-- Menú lateral -->
+<aside aria-label="Navegació principal" class="sidebar" role="navigation">
+    <div class="sidebar-header">
+        <img alt="TCM Calendar" class="sidebar-logo" src="assets/images/logo_app.svg">
+    </div>
+    <nav class="sidebar-nav">
+        <div class="nav-main">
+            <ul>
+                <li>
+                    <a class="nav-item" href="tcm-calendar.html">
+                        <span>Inici</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item" href="saved-calendars.html">
+                        <span>El meu calendari</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item active" href="calendar-creation.html">
+                        <span>Crea el teu horari</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item" href="about-tcm-calendar.html">
+                        <span>Punt d'informació</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</aside>
+
+<!-- Hero Section -->
+<section class="profile-hero">
+    <div class="profile-hero-content">
+        <h1>Configura les teves preferències</h1>
+        <p class="profile-subtitle">Personalitza com vols que sigui el teu horari ideal</p>
+    </div>
+    <div class="profile-hero-decoration"></div>
+</section>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="profile-container preferences-container generated-results">
+        <!-- Progress Steps -->
+        <div aria-label="Flux de creació d'horari" class="progress-steps workflow-quick-nav">
+            <div class="step completed">
+                <a aria-label="Pas 1: Seleccionar assignatures" class="step-link" href="subjects-selector.html">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Assignatures</div>
+                </a>
+            </div>
+            <div class="step-line completed"></div>
+            <div aria-current="step" class="step active">
+                <a aria-label="Pas 2: Configurar preferències" class="step-link" href="preferences-selector.html">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Preferències</div>
+                </a>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+                <a aria-label="Pas 3: Generar horari" class="step-link" href="calendar-creation.html">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Revisió</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Optimization Preferences -->
+        <div class="form-section preferences-section">
+            <h2>Preferències disponibles
+            </h2>
+
+            <div class="preferences-grid">
+                <label class="preference-card">
+                    <input checked class="preference-radio" name="optimization" type="radio" value="minimize-gaps">
+                    <div class="preference-content">
+                        <div class="preference-info">
+                            <h3>Minimitzar hores mortes</h3>
+                            <p>Prioritza l'horari amb menys espais buits entre classes.</p>
+                        </div>
+                        <div class="preference-check">✓</div>
+                    </div>
+                </label>
+
+                <label class="preference-card">
+                    <input class="preference-radio" name="optimization" type="radio" value="free-day">
+                    <div class="preference-content">
+                        <div class="preference-info">
+                            <h3>Deixar un dia lliure</h3>
+                            <p>Busca un horari amb un dia de la setmana completament lliure.</p>
+                        </div>
+                        <div class="preference-check">✓</div>
+                    </div>
+                </label>
+
+                <label class="preference-card">
+                    <input class="preference-radio" name="optimization" type="radio" value="balanced">
+                    <div class="preference-content">
+                        <div class="preference-info">
+                            <h3>Distribució equilibrada</h3>
+                            <p>Intenta repartir les hores de classe de manera similar cada dia.</p>
+                        </div>
+                        <div class="preference-check">✓</div>
+                    </div>
+                </label>
+
+                <label class="preference-card">
+                    <input class="preference-radio" name="optimization" type="radio" value="avoid-early">
+                    <div class="preference-content">
+                        <div class="preference-info">
+                            <h3>No tenir classe a primera hora</h3>
+                            <p>Minimitza les classes que comencen a les 8:15 al matí i a les 15:00 a la tarda.</p>
+                        </div>
+                        <div class="preference-check">✓</div>
+                    </div>
+                </label>
+
+                <label class="preference-card">
+                    <input class="preference-radio" name="optimization" type="radio" value="avoid-late">
+                    <div class="preference-content">
+                        <div class="preference-info">
+                            <h3>No tenir classe a última hora</h3>
+                            <p>Minimitza les classes que acaben a les 14:00 al matí i a les 20:45 a la tarda.</p>
+                        </div>
+                        <div class="preference-check">✓</div>
+                    </div>
+                </label>
+
+                <label class="preference-card">
+                    <input class="preference-radio" name="optimization" type="radio" value="group-by-type">
+                    <div class="preference-content">
+                        <div class="preference-info">
+                            <h3>Concentrar per tipus de classe</h3>
+                            <p>Prioritza dies només de teoria o només de pràctiques, i evita barrejar-les el mateix
+                                dia.</p>
+                        </div>
+                        <div class="preference-check">✓</div>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <!-- Action Buttons -->
+        <div class="form-actions generated-actions">
+            <button class="btn-secondary" id="backBtn" type="button">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+                Modificar assignatures
+            </button>
+
+            <div class="primary-actions">
+                <button class="btn-secondary" id="saveBtn" type="button">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                        <polyline points="17 21 17 13 7 13 7 21"/>
+                        <polyline points="7 3 7 8 15 8"/>
+                    </svg>
+                    Guardar selecció
+                </button>
+                <button class="btn-primary" id="continueBtn" type="button">
+                    Continuar
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<!-- Auth state -->
+<script src="scripts/utils.js"></script>
+<script src="scripts/auth-state.js"></script>
+<script>
+    // Protegir aquesta pàgina - requerir autenticació
+    if (!AuthState.isAuthenticated()) {
+        window.location.href = 'login.html';
+    }
+</script>
+<script src="scripts/sidebar.js"></script>
+<script src="scripts/header-auth.js"></script>
+<script src="scripts/nav-auth.js"></script>
+<script src="scripts/header.js"></script>
+<script src="scripts/sidebar-auth.js"></script>
+<script src="scripts/preferences.js"></script>
+
+</body>
+
+</html>
