@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>El meu perfil - TCM Calendar</title>
+    <link href="styles/fonts.css" rel="stylesheet">
+    <link href="styles/base.css" rel="stylesheet">
+    <link href="styles/profile.css" rel="stylesheet">
+    <link href="styles/responsive.css" rel="stylesheet">
+    <link href="styles/transitions.css" rel="stylesheet">
+    <link href="styles/header.css" rel="stylesheet">
+    <link href="styles/sidebar.css" rel="stylesheet">
+    <link href="styles/sidebar-profile.css" rel="stylesheet">
+    <link href="styles/nav-auth.css" rel="stylesheet">
+    <link href="styles/shared-components.css" rel="stylesheet">
+    <!-- Estils de popup -->
+    <link href="styles/popup.css" rel="stylesheet">
+    <link href="styles/consistency.css" rel="stylesheet">
+</head>
+
+<body>
+<div aria-hidden="true" class="sidebar-overlay" id="sidebarOverlay"></div>
+<!-- Botó per obrir/tancar menú lateral -->
+<button aria-expanded="false" aria-label="Obrir/Tancar menú de navegació" class="menu-button" id="toggleSidebar">
+    <span aria-hidden="true">☰</span>
+</button>
+
+<!-- Capçalera superior -->
+<header class="top-header" role="banner">
+    <div class="header-container">
+        <div class="logo-section">
+            <img alt="TecnoCampus" class="tecnocampus-logo" src="assets/images/logo_horitz.png">
+        </div>
+        <div aria-label="Secció d'autenticació" class="auth-section" id="headerAuthSection" role="region">
+            <!-- Contingut generat dinàmicament per auth-state.js -->
+        </div>
+    </div>
+</header>
+
+<!-- Menú lateral -->
+<aside aria-label="Navegació principal" class="sidebar" role="navigation">
+    <div class="sidebar-header">
+        <img alt="TCM Calendar" class="sidebar-logo" src="assets/images/logo_app.svg">
+    </div>
+    <nav class="sidebar-nav">
+        <div class="nav-main">
+            <ul>
+                <li>
+                    <a class="nav-item" href="tcm-calendar.html">
+                        <span>Inici</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item" href="saved-calendars.html">
+                        <span>El meu calendari</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item" href="calendar-creation.html">
+                        <span>Crea el teu horari</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item" href="about-tcm-calendar.html">
+                        <span>Punt d'informació</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</aside>
+
+<section class="profile-hero">
+    <div class="profile-hero-content">
+        <h1>El meu perfil</h1>
+        <p class="profile-subtitle">Gestiona la teva identitat dins l'aplicació</p>
+    </div>
+    <div class="profile-hero-decoration"></div>
+</section>
+
+<main class="main-content">
+    <div class="profile-container">
+        <div class="profile-grid">
+            <div class="profile-sidebar-card">
+                <div class="form-section avatar-section">
+                    <h2>Foto de perfil</h2>
+                    <div class="avatar-container">
+                        <div class="current-avatar">
+                            <img alt="Foto de perfil" id="header-photo" src="assets/images/default-avatar.svg">
+                        </div>
+                    </div>
+                    <div class="avatar-change-row">
+                        <button aria-controls="avatar-selector" aria-expanded="false" class="change-avatar-btn" id="change-avatar-btn"
+                                title="Escollir avatar" type="button">
+                            <img alt="" aria-hidden="true" class="avatar-camera-icon"
+                                 src="assets/images/icons/camera-edit.svg">
+                            <span>Canviar avatar</span>
+                        </button>
+                    </div>
+                    <div class="avatar-selector" id="avatar-selector">
+                        <p class="avatar-selector-title">Escull el teu avatar o puja una imatge teva</p>
+                        <div class="avatar-grid">
+                            <button class="avatar-option" data-avatar="assets/images/avatars/avatar-1.svg"
+                                    type="button"><img
+                                    alt="Avatar 1" src="assets/images/avatars/avatar-1.svg"></button>
+                            <button class="avatar-option" data-avatar="assets/images/avatars/avatar-2.svg"
+                                    type="button"><img
+                                    alt="Avatar 2" src="assets/images/avatars/avatar-2.svg"></button>
+                            <button class="avatar-option" data-avatar="assets/images/avatars/avatar-3.svg"
+                                    type="button"><img
+                                    alt="Avatar 3" src="assets/images/avatars/avatar-3.svg"></button>
+                            <button class="avatar-option" data-avatar="assets/images/avatars/avatar-4.svg"
+                                    type="button"><img
+                                    alt="Avatar 4" src="assets/images/avatars/avatar-4.svg"></button>
+                            <button class="avatar-option" data-avatar="assets/images/avatars/avatar-5.svg"
+                                    type="button"><img
+                                    alt="Avatar 5" src="assets/images/avatars/avatar-5.svg"></button>
+                            <button class="avatar-option" data-avatar="assets/images/avatars/avatar-6.svg"
+                                    type="button"><img
+                                    alt="Avatar 6" src="assets/images/avatars/avatar-6.svg"></button>
+                            <button class="avatar-option" data-avatar="assets/images/avatars/avatar-7.svg"
+                                    type="button"><img
+                                    alt="Avatar 7" src="assets/images/avatars/avatar-7.svg"></button>
+                            <button class="avatar-option" data-avatar="assets/images/avatars/avatar-8.svg"
+                                    type="button"><img
+                                    alt="Avatar 8" src="assets/images/avatars/avatar-8.svg"></button>
+                            <button class="avatar-option" data-avatar="assets/images/avatars/avatar-9.svg"
+                                    type="button"><img
+                                    alt="Avatar 9" src="assets/images/avatars/avatar-9.svg"></button>
+                            <button class="avatar-option" data-avatar="assets/images/avatars/avatar-10.svg"
+                                    type="button"><img
+                                    alt="Avatar 10" src="assets/images/avatars/avatar-10.svg"></button>
+                            <button class="avatar-option" data-avatar="assets/images/avatars/avatar-11.svg"
+                                    type="button"><img
+                                    alt="Avatar 11" src="assets/images/avatars/avatar-11.svg"></button>
+                            <button class="avatar-option" data-avatar="assets/images/avatars/avatar-12.svg"
+                                    type="button"><img
+                                    alt="Avatar 12" src="assets/images/avatars/avatar-12.svg"></button>
+                        </div>
+                        <div class="avatar-upload">
+                            <label class="upload-label" for="avatar-file">
+                                <svg fill="none" stroke="currentColor" stroke-width="2"
+                                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="17 8 12 3 7 8"/>
+                                    <line x1="12" x2="12" y1="3" y2="15"/>
+                                </svg>
+                                Pujar imatge
+                            </label>
+                            <input accept="image/*" hidden id="avatar-file" type="file">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-forms">
+                <form class="profile-form" id="profile-form">
+                    <section aria-label="Dades personals" class="form-section">
+                        <h2>Dades personals</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">Nom</label>
+                                <input id="firstName" name="firstName" placeholder="Nom" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastNames">Cognoms</label>
+                                <input id="lastNames" name="lastNames" placeholder="Cognoms" type="text">
+                            </div>
+                        </div>
+                        <article aria-label="Resum de dades personals" class="summary-card">
+                            <h3>Resum actual</h3>
+                            <p id="summaryFullName">No disponible</p>
+                        </article>
+                    </section>
+
+                    <section aria-label="Grau i curs" class="form-section">
+                        <h2>Grau i curs</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="degree">Grau</label>
+                                <select id="degree" name="degree">
+                                    <option value="">Selecciona el teu grau</option>
+                                    <option value="GEEIA">Grau en Enginyeria Electrònica Industrial i Automàtica
+                                    </option>
+                                    <option value="GEIGSI">Grau en Enginyeria Informàtica de Gestió i Sistemes
+                                        d'Informació
+                                    </option>
+                                    <option value="GEM">Grau en Enginyeria Mecànica</option>
+                                    <option value="GEOI">Grau en Enginyeria d'Organització Industrial</option>
+                                    <option value="GEIGDP">Doble grau en Informàtica de Gestió i Sistemes
+                                        d'Informació i Disseny i Producció de Videojocs
+                                    </option>
+                                    <option value="GEEIA+GEM">Graus simultanis d'Enginyeria Electrònica Industrial i
+                                        Automàtica i Enginyeria Mecànica
+                                    </option>
+                                    <option value="GEEIA+GEIGSI">Graus simultanis d'Enginyeria Electrònica
+                                        Industrial i Automàtica i Enginyeria Informàtica de Gestió i Sistemes
+                                        d'Informació
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="academicYear">Curs</label>
+                                <select id="academicYear" name="academicYear">
+                                    <option value="">Selecciona</option>
+                                    <option value="1">1r curs</option>
+                                    <option value="2">2n curs</option>
+                                    <option value="3">3r curs</option>
+                                    <option value="4">4t curs</option>
+                                    <option value="5">5è curs</option>
+                                    <option value="6">6è curs</option>
+                                </select>
+                            </div>
+                        </div>
+                        <article aria-label="Resum acadèmic" class="summary-card">
+                            <h3>Resum actual</h3>
+                            <p id="summaryAcademic">No disponible</p>
+                        </article>
+                    </section>
+
+                    <section aria-label="Seleccionar assignatures" class="form-section">
+                        <h2>Assignatures</h2>
+                        <p class="section-helper">Selecciona les assignatures que vols utilitzar per generar el
+                            calendari.</p>
+                        <div class="section-action-row">
+                            <a class="manage-link-button" href="subjects-selector.html"
+                               id="manage-subjects-link">Seleccionar assignatures</a>
+                        </div>
+                        <article aria-label="Assignatures guardades a la base de dades" class="summary-card">
+                            <h3>Assignatures del curs</h3>
+                            <ul class="summary-list" id="summarySubjects"></ul>
+                        </article>
+                    </section>
+
+                    <section aria-label="Seleccionar preferències" class="form-section">
+                        <h2>Preferències</h2>
+                        <p class="section-helper">Configura les preferències d'horari i optimització.</p>
+                        <div class="section-action-row">
+                            <a class="manage-link-button" href="preferences-selector.html">Seleccionar preferències</a>
+                        </div>
+                        <article aria-label="Preferències guardades a la base de dades" class="summary-card">
+                            <h3>Preferències guardades</h3>
+                            <ul class="summary-list" id="summaryPreferences"></ul>
+                        </article>
+                    </section>
+
+                    <div class="form-section danger-zone">
+                        <h2>Vols eliminar el teu compte?</h2>
+                        <div class="danger-content">
+                            <div class="danger-info">
+                                <p class="danger-description">Un cop eliminat, no podràs recuperar el teu compte ni
+                                    les teves dades. Aquesta acció és irreversible.</p>
+                            </div>
+                            <button class="danger-button" id="delete-account-btn" type="button">Eliminar
+                                compte
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="secondary-button" id="cancel-btn" type="button">Cancel·lar</button>
+                        <button class="primary-button" type="submit">Desar canvis</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="scripts/utils.js"></script>
+<script src="scripts/auth-state.js"></script>
+<script>
+    if (!AuthState.isAuthenticated()) {
+        window.location.href = 'login.html';
+    }
+</script>
+<script src="scripts/sidebar.js"></script>
+<script src="scripts/header-auth.js"></script>
+<script src="scripts/nav-auth.js"></script>
+<script src="scripts/profile.js"></script>
+<script src="scripts/header.js"></script>
+<script src="scripts/sidebar-auth.js"></script>
+<script src="scripts/popup.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const changeAvatarBtn = document.getElementById('change-avatar-btn');
+        const avatarSelector = document.getElementById('avatar-selector');
+        const avatarOptions = document.querySelectorAll('.avatar-option');
+        const headerPhoto = document.getElementById('header-photo');
+        const avatarFileInput = document.getElementById('avatar-file');
+        const selectedIndicator = document.getElementById('avatar-selected-indicator');
+
+        function updateSelectedIndicator(label) {
+            if (selectedIndicator) {
+                selectedIndicator.textContent = `Seleccionat: ${label}`;
+            }
+        }
+
+        function markSelectedAvatarBySrc(avatarSrc) {
+            let found = false;
+
+            avatarOptions.forEach(option => {
+                const isSelected = option.dataset.avatar === avatarSrc;
+                option.classList.toggle('selected', isSelected);
+                if (isSelected) {
+                    const label = option.querySelector('img')?.alt || 'Avatar';
+                    updateSelectedIndicator(label);
+                    found = true;
+                }
+            });
+
+            if (!found) {
+                updateSelectedIndicator('Imatge personalitzada');
+            }
+        }
+
+        if (changeAvatarBtn) {
+            changeAvatarBtn.addEventListener('click', function () {
+                avatarSelector.classList.toggle('show');
+                changeAvatarBtn.setAttribute('aria-expanded', avatarSelector.classList.contains('show') ? 'true' : 'false');
+            });
+        }
+
+        avatarOptions.forEach(option => {
+            option.addEventListener('click', function () {
+                const avatarSrc = this.dataset.avatar;
+                markSelectedAvatarBySrc(avatarSrc);
+
+                if (headerPhoto) {
+                    headerPhoto.src = avatarSrc;
+                }
+
+                AuthState.setAvatar(avatarSrc);
+            });
+        });
+
+        if (avatarFileInput) {
+            avatarFileInput.addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    if (file.size > 500 * 1024) {
+                        alert('La imatge és massa gran. Màxim 500KB.');
+                        return;
+                    }
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        if (headerPhoto) {
+                            headerPhoto.src = event.target.result;
+                        }
+                        markSelectedAvatarBySrc(event.target.result);
+                        AuthState.setAvatar(event.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        if (headerPhoto && headerPhoto.src) {
+            markSelectedAvatarBySrc(headerPhoto.src);
+        }
+    });
+</script>
+</body>
+
+</html>
