@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Crear horari - TCM Calendar</title>
+    <link href="styles/fonts.css" rel="stylesheet">
+    <link href="styles/base.css" rel="stylesheet">
+    <link href="styles/profile.css" rel="stylesheet">
+    <link href="styles/calendar.css" rel="stylesheet">
+    <link href="styles/calendar-enhanced.css" rel="stylesheet">
+    <link href="styles/schedule-viewer.css?v=3" rel="stylesheet">
+    <link href="styles/calendar-layout.css?v=1" rel="stylesheet">
+    <link href="styles/preferences.css" rel="stylesheet">
+    <link href="styles/responsive.css" rel="stylesheet">
+    <link href="styles/transitions.css" rel="stylesheet">
+    <link href="styles/header.css" rel="stylesheet">
+    <link href="styles/sidebar.css" rel="stylesheet">
+    <link href="styles/sidebar-profile.css" rel="stylesheet">
+    <link href="styles/nav-auth.css" rel="stylesheet">
+    <link href="styles/shared-components.css" rel="stylesheet">
+    <link href="styles/consistency.css" rel="stylesheet">
+</head>
+
+<body>
+<div aria-hidden="true" class="sidebar-overlay" id="sidebarOverlay"></div>
+<!-- Botó per obrir/tancar menú lateral -->
+<button aria-expanded="false" aria-label="Obrir/Tancar menú de navegació" class="menu-button" id="toggleSidebar">
+    <span aria-hidden="true">☰</span>
+</button>
+
+<!-- Capçalera superior -->
+<header class="top-header" role="banner">
+    <div class="header-container">
+        <div class="logo-section">
+            <img alt="TecnoCampus" class="tecnocampus-logo" src="assets/images/logo_horitz.png">
+        </div>
+        <div aria-label="Secció d'autenticació" class="auth-section" id="headerAuthSection" role="region">
+            <!-- Contingut generat dinàmicament per auth-state.js -->
+        </div>
+    </div>
+</header>
+
+<!-- Menú lateral -->
+<aside aria-label="Navegació principal" class="sidebar" role="navigation">
+    <div class="sidebar-header">
+        <img alt="TCM Calendar" class="sidebar-logo" src="assets/images/logo_app.svg">
+    </div>
+    <nav class="sidebar-nav">
+        <div class="nav-main">
+            <ul>
+                <li>
+                    <a class="nav-item" href="tcm-calendar.html">
+                        <span>Inici</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item" href="saved-calendars.html">
+                        <span>El meu calendari</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item active" href="calendar-creation.html">
+                        <span>Crea el teu horari</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item" href="about-tcm-calendar.html">
+                        <span>Punt d'informació</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</aside>
+
+<!-- Hero Section -->
+<section class="profile-hero">
+    <div class="profile-hero-content">
+        <h1>Crea el teu horari</h1>
+        <p class="profile-subtitle">Selecciona les assignatures, ajusta les preferències i genera un horari que
+            s'adapti a tu</p>
+    </div>
+    <div class="profile-hero-decoration"></div>
+</section>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="profile-container calendar-container">
+        <section class="form-section create-menu-section">
+            <div class="create-menu-hero">
+                <div>
+                    <h2>Com funciona?</h2>
+                </div>
+            </div>
+            <div class="create-steps-grid">
+                <article class="create-step-card">
+                    <span class="create-step-number">1</span>
+                    <h3>Selecciona les assignatures</h3>
+                    <p>Selecciona les assignatures que cursaràs</p>
+                    <a class="step-action-btn" href="subjects-selector.html">Anar a assignatures</a>
+                </article>
+
+                <article class="create-step-card">
+                    <span class="create-step-number">2</span>
+                    <h3>Selecciona les preferències</h3>
+                    <p>Defineix les teves preferències d'optimització</p>
+                    <a class="step-action-btn" href="preferences-selector.html">Anar a preferències</a>
+                </article>
+
+                <article class="create-step-card create-step-card-generate create-step-card-generate-full">
+                    <span class="create-step-number">3</span>
+                    <h3>Genera l'horari</h3>
+                    <p>Quan ho tinguis tot preparat, genera les teves propostes d'horaris per quedar-te amb la que
+                        millor s'adapti a tu</p>
+                    <button class="step-action-btn step-action-btn-primary step-action-btn-large" id="generateScheduleBtn"
+                            type="button">GENERAR
+                    </button>
+                </article>
+            </div>
+        </section>
+
+        <!-- Generated results moved to separate view page -->
+    </div>
+</main>
+
+<!-- Summary modal - Resum abans de generar -->
+<div aria-hidden="true" class="detail-modal" id="generationSummaryModal">
+    <div class="detail-modal-backdrop" id="generationSummaryBackdrop"></div>
+    <div class="detail-modal-content card generation-summary-modal-content">
+        <div class="card-header">
+            <h2>Resum previa abans de generar:</h2>
+            <button aria-label="Tancar resum" class="close-modal-btn" id="closeGenerationSummary">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+        <div class="card-body">
+            <p class="section-description" id="generationSummaryText"></p>
+            <div class="generation-summary-grid">
+                <section class="generation-summary-block">
+                    <h4>Assignatures (<span id="summarySubjectCount">0</span>)</h4>
+                    <ul class="generation-summary-list" id="summarySubjectsList"></ul>
+                </section>
+                <section class="generation-summary-block">
+                    <h4>Preferències aplicades</h4>
+                    <ul class="generation-summary-list" id="summaryPreferenceList"></ul>
+                </section>
+            </div>
+        </div>
+        <div class="generation-summary-actions">
+            <button class="btn-secondary" id="cancelGenerateBtn" type="button">Tornar</button>
+            <button class="btn-primary" id="confirmGenerateBtn" type="button">Confirmar i generar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Detail modal - Detall de l'opció -->
+<div aria-hidden="true" class="detail-modal" id="optionDetailModal">
+    <div class="detail-modal-backdrop" id="detailBackdrop"></div>
+    <div class="detail-modal-content card">
+        <div class="card-header">
+            <h3 id="optionDetailTitle">Detall de l'opció</h3>
+            <button aria-label="Tancar detall" class="close-modal-btn" id="closeDetail">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Auth state debe cargarse primero -->
+<script src="scripts/utils.js"></script>
+<script src="scripts/auth-state.js"></script>
+<script>
+    // Protegir aquesta pàgina - requerir autenticació
+    if (!AuthState.isAuthenticated()) {
+        window.location.href = 'login.html';
+    }
+</script>
+<script src="scripts/sidebar.js"></script>
+<script src="scripts/header-auth.js"></script>
+<script src="scripts/nav-auth.js"></script>
+<script src="scripts/header.js"></script>
+<script src="scripts/sidebar-auth.js"></script>
+<script src="scripts/academic-calendar.js"></script>
+<script src="scripts/schedule-viewer.js"></script>
+</body>
+
+</html>

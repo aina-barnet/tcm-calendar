@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Visualitza horari - TCM Calendar</title>
+    <link href="styles/fonts.css" rel="stylesheet">
+    <link href="styles/base.css" rel="stylesheet">
+    <link href="styles/profile.css" rel="stylesheet">
+    <link href="styles/calendar.css" rel="stylesheet">
+    <link href="styles/calendar-enhanced.css" rel="stylesheet">
+    <link href="styles/schedule-viewer.css?v=3" rel="stylesheet">
+    <link href="styles/calendar-layout.css?v=1" rel="stylesheet">
+    <link href="styles/preferences.css" rel="stylesheet">
+    <link href="styles/responsive.css" rel="stylesheet">
+    <link href="styles/transitions.css" rel="stylesheet">
+    <link href="styles/header.css" rel="stylesheet">
+    <link href="styles/sidebar.css" rel="stylesheet">
+    <link href="styles/sidebar-profile.css" rel="stylesheet">
+    <link href="styles/nav-auth.css" rel="stylesheet">
+    <link href="styles/shared-components.css" rel="stylesheet">
+    <link href="styles/consistency.css" rel="stylesheet">
+</head>
+
+<body class="view-generated-page">
+    <div aria-hidden="true" class="sidebar-overlay" id="sidebarOverlay"></div>
+    <button aria-expanded="false" aria-label="Obrir/Tancar menú de navegació" class="menu-button" id="toggleSidebar">
+        <span aria-hidden="true">☰</span>
+    </button>
+
+    <header class="top-header" role="banner">
+        <div class="header-container">
+            <div class="logo-section">
+                <img alt="TecnoCampus" class="tecnocampus-logo" src="assets/images/logo_horitz.png">
+            </div>
+            <div aria-label="Secció d'autenticació" class="auth-section" id="headerAuthSection" role="region">
+            </div>
+        </div>
+    </header>
+
+    <aside aria-label="Navegació principal" class="sidebar" role="navigation">
+        <div class="sidebar-header">
+            <img alt="TCM Calendar" class="sidebar-logo" src="assets/images/logo_app.svg">
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-main">
+                <ul>
+                    <li>
+                        <a class="nav-item" href="tcm-calendar.html">
+                            <span>Inici</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="saved-calendars.html">
+                            <span>El meu calendari</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item active" href="calendar-creation.html">
+                            <span>Crea el teu horari</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="about-tcm-calendar.html">
+                            <span>Punt d'informació</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <section class="profile-hero">
+        <div class="profile-hero-content">
+            <h1>El teu horari generat</h1>
+            <p class="profile-subtitle">Compara les propostes amb una lectura clara, revisa la preferència destacada i
+                guarda la que et sigui més còmoda.</p>
+        </div>
+        <div class="profile-hero-decoration"></div>
+    </section>
+
+    <main class="main-content">
+        <div class="profile-container calendar-container">
+            <div class="generated-results" id="generatedResults">
+
+                <div class="generated-results-header card">
+                    <h2>Propostes preparades per comparar</h2>
+                    <p>Selecciona una proposta, obre el panell d'opcions si vols veure l'ordre suggerit i utilitza els
+                        controls inferiors per navegar o guardar.</p>
+                </div>
+
+                <!-- Single-Column Layout: Calendar Only -->
+                <div class="calendar-layout-single" id="generationContainer">
+
+                    <!-- Ordering explanation card (actualitzat) -->
+                    <div aria-live="polite" class="ordering-card card" id="orderingCard">
+                        <div class="card-header">
+                            <h3>Com es prioritzen les propostes?</h3>
+                        </div>
+                        <div class="card-body">
+                            <ol class="ordering-list">
+                                <li><strong>Col·lisions:</strong> primer es prioritzen les opcions amb menys
+                                    conflictes d'horari.
+                                </li>
+                                <li><strong>Solapaments:</strong> si hi ha empat, es prefereixen les opcions amb
+                                    menys minuts de solapament.
+                                </li>
+                                <li><strong>Preferència seleccionada:</strong> en cas d'un altre empat, es fa servir la
+                                    preferència seleccionada.
+                                </li>
+                                <li><strong>Desempat:</strong> si encara persisteix l'empat, s'aplica una
+                                    clau determinística per mantenir un ordre estable.
+                                </li>
+                            </ol>
+
+                            <p class="muted"><strong>"Ordenar per la meva preferència"</strong> reordena localment la
+                                llista mantenint el criteri escollit com a prioritat principal.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Calendar -->
+                    <div class="calendar-column">
+                        <!-- Open Options Panel Button -->
+                        <div class="options-panel-toggle-wrapper">
+                            <button aria-label="Obrir panell d'opcions" class="btn-open-options" id="openOptionsPanel">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                                Veure opcions
+                            </button>
+                        </div>
+
+                        <!-- Schedule Navigation -->
+                        <div class="schedule-navigation">
+                            <button aria-label="Anterior" class="nav-schedule-btn" disabled id="prevSchedule">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 18l-6-6 6-6" />
+                                </svg>
+                            </button>
+                            <div class="schedule-indicator">
+                                <span class="schedule-current" id="currentSchedule">1</span>
+                                <span class="schedule-total">/ <span id="totalSchedules">2</span></span>
+                            </div>
+                            <div class="schedule-variant-label" id="weekVariantLabel">Setmana 1</div>
+                            <button aria-label="Següent" class="nav-schedule-btn" id="nextSchedule">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 18l6-6-6-6" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div aria-live="polite" class="overlap-alerts is-hidden" id="overlapAlerts"></div>
+
+                        <!-- Weekly Schedule Grid -->
+                        <div class="form-section schedule-section">
+                            <div class="schedule-grid" id="scheduleGrid">
+                                <!-- Schedule header -->
+                                <div class="schedule-header">
+                                    <div class="time-column-header"></div>
+                                    <div class="day-header">Dilluns</div>
+                                    <div class="day-header">Dimarts</div>
+                                    <div class="day-header">Dimecres</div>
+                                    <div class="day-header">Dijous</div>
+                                    <div class="day-header">Divendres</div>
+                                </div>
+
+                                <!-- Schedule body -->
+                                <div class="schedule-body" id="scheduleBody">
+                                    <!-- Generat dinàmicament -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Explanation Panel as Modal/Overlay -->
+                <aside aria-hidden="true" aria-labelledby="explanationTitle" class="explanation-panel-modal"
+                    id="explanationColumn">
+                    <div class="explanation-panel-backdrop" id="explanationBackdrop"></div>
+                    <div class="explanation-panel card">
+                        <div class="card-header">
+                            <h3 id="explanationTitle">Opcions disponibles</h3>
+                            <button aria-label="Tancar panell d'opcions" class="close-modal-btn" id="closeOptionsPanel">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18 6L6 18M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="card-body" id="explanationContent">
+                            <p class="muted" id="summaryMessage">S'han trobat 0 combinacions vàlides.</p>
+                            <div class="options-list" id="optionsList"></div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Action Buttons -->
+                <div class="form-actions">
+                    <button class="btn-secondary" id="modifySubjectsBtn" type="button">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                        </svg>
+                        Modificar assignatures
+                    </button>
+                    <button class="btn-secondary" id="modifyBtn" type="button">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                        </svg>
+                        Modificar preferències
+                    </button>
+                    <div class="primary-actions">
+                        <div class="export-dropdown" id="exportDropdown">
+                            <button aria-controls="exportMenu" aria-expanded="false" aria-haspopup="true"
+                                class="btn-secondary" id="exportBtn" type="button">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" x2="12" y1="15" y2="3" />
+                                </svg>
+                                Exportar
+                            </button>
+                            <div aria-label="Opcions d'exportació" class="export-menu" id="exportMenu" role="menu">
+                                <button class="export-menu-item" id="exportPdfBtn" role="menuitem" type="button">
+                                    Exporta PDF
+                                </button>
+                                <button class="export-menu-item" id="exportIcsBtn" role="menuitem" type="button">
+                                    Exporta ICS (.ics)
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn-primary" id="saveScheduleBtn" type="button">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+                                <polyline points="17 21 17 13 7 13 7 21" />
+                                <polyline points="7 3 7 8 15 8" />
+                            </svg>
+                            Guardar horari
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detail modal - Detall de l'opció -->
+            <div aria-hidden="true" class="detail-modal" id="optionDetailModal">
+                <div class="detail-modal-backdrop" id="detailBackdrop"></div>
+                <div class="detail-modal-content card">
+                    <div class="card-header">
+                        <h3 id="optionDetailTitle">Detall de l'opció</h3>
+                        <button aria-label="Tancar detall" class="close-modal-btn" id="closeDetail">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 6L6 18M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="card-body detail-modal-body">
+                        <div class="detail-kpis" id="detailKPIs"></div>
+                        <div class="detail-groups" id="detailGroups"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/auth-state.js"></script>
+    <script>
+        if (!AuthState.isAuthenticated()) {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <script src="scripts/sidebar.js"></script>
+    <script src="scripts/header-auth.js"></script>
+    <script src="scripts/nav-auth.js"></script>
+    <script src="scripts/header.js"></script>
+    <script src="scripts/sidebar-auth.js"></script>
+    <script src="scripts/academic-calendar.js"></script>
+    <script src="scripts/schedule-viewer.js"></script>
+</body>
+
+</html>
